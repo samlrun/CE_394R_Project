@@ -1,7 +1,7 @@
 library(tidyverse)
 library(pacman)
 
-# Read the file #######
+# First Attempt - ignore #######
 df <- read_csv("R/Crash_Data_14-20.csv") %>%
   as_tibble() %>%
   select(c(crash_severity_id,manner_collision_id)) %>%
@@ -26,7 +26,6 @@ df <- read_csv("R/Crash_Data_14-20.csv") %>%
   table() %>%
   print()
 
-
 write.csv(df,"R/sev_correlation.csv",row.names=FALSE)
 
 # Plot the table ########
@@ -40,7 +39,7 @@ df %>%
 
 
 
-
+# Improved Code
 # CORRELATION MATRIX #######################################
 
 df <- read_csv("R/CAMS_Crashes_14-18.csv") %>%
@@ -66,10 +65,11 @@ df <- read_csv("R/CAMS_Crashes_14-18.csv") %>%
   ) %>%
   print()
 
-# Correlation matrix for data frame
-cor(df)
+cbind(rowSums(df[]))
+df %>%
+  cbind()
 
-# Rounded to 2 decimals
+# Correlation matrix for data frame
 df %>%
   cor() %>%
   round(2)
@@ -90,3 +90,13 @@ p_load(Hmisc)
 df %>%
   as.matrix() %>%
   rcorr()
+
+# Visualize ########################################
+
+# create scatter plots
+df %>%
+  plot()  # Plot all associations
+
+df %>%
+  select(c(Head_On, Sev_3)) %>% 
+  plot()
