@@ -1,45 +1,32 @@
 ---
-title: "Article Long Title"
+title: "Correlation Between Vehicle Crash Severity and Manner of Collision"
 author:
-  - name: Gregory Macfarlane
-    email: gregmacfarlane@byu.edu
-    affiliation: Brigham Young University
-    footnote: 1
-  - name: Cosmo Cougar
-    email: bob@example.com
-    affiliation: Brigham Young University
-  - name: Masters Student
-    email: cat@example.com
-    affiliation: Brigham Young University
-    footnote: 2
-address:
-  - code: Brigham Young University
-    address: Civil and Environmental Engineering Department, 430 Engineering Building, Provo, Utah 84602
-  - code: Another University
-    address: Some Other Place
-footnote:
-  - code: 1
-    text: "Corresponding Author"
-  - code: 2
-    text: "Present affiliation: some nice job"
+- name: Samuel Runyan
+  email: samyan@byu.edu
+  affiliation: Brigham Young University
+  footnote: 1
 date: "`r Sys.Date()`"
+address:
+- code: Brigham Young University
+  address: Civil and Environmental Engineering Department, 430 Engineering Building,
+    Provo, Utah 84602
 site: bookdown::bookdown_site
 documentclass: article
-journal: "Submitted to Journal"
-bibliography: [book.bib]
+journal: Submitted to Journal
+bibliography: book.bib
 biblio-style: apalike
 link-citations: yes
 abstract: |
   This is where the abstract should go.
-description: "A short description"
-layout: "3p, authoryear"
+description: A short description
+layout: 3p, authoryear
 keywords:
-  - Accessibility
-  - Passive Data
-  - Location Choice
+- Accessibility
+- Passive Data
+- Location Choice
 ---
 
-# Introduction {#intro}
+# QUESTIONS {#intro}
 
 
 This repository serves as a template both in how to write a report, and how

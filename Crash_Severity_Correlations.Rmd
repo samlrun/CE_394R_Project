@@ -1,0 +1,194 @@
+---
+title: "Correlation Between Vehicle Crash Severity and Manner of Collision"
+author:
+- name: Samuel Runyan
+  email: samyan@byu.edu
+  affiliation: Brigham Young University
+  footnote: 1
+date: "`r Sys.Date()`"
+address:
+- code: Brigham Young University
+  address: Civil and Environmental Engineering Department, 430 Engineering Building,
+    Provo, Utah 84602
+site: bookdown::bookdown_site
+documentclass: article
+journal: Submitted to Journal
+bibliography: book.bib
+biblio-style: apalike
+link-citations: yes
+abstract: |
+  This is where the abstract should go.
+description: A short description
+layout: 3p, authoryear
+keywords:
+- Accessibility
+- Passive Data
+- Location Choice
+---
+
+# QUESTIONS {#intro}
+
+
+This repository serves as a template both in how to write a report, and how
+to do so in RStudio and Bookdown. The parent repository is available as a free
+template at [https://github.com/byu-transpolab/template_bookdown](https://github.com/byu-transpolab/template_bookdown).
+
+The advice in this document comes from numerous sources. Some of it is my own, some
+has been shared by others. Particular note belongs to:
+
+  - Laurie Garrow
+  - Lisa Rosenstein
+  - Kara Kockelman
+  
+The introduction of your report is not simply an "introduction", but rather a 
+**motivation** of why your project matters. What is the cost of not solving 
+this problem? What have been previous attempts to solve this problem? The *why*
+is more important than the *what*. Why is this article worthy of archiving?
+
+A three or four-paragraph structure can work well here.
+
+  1. Identify the problem and why it matters.
+  2. A high-level overview of some previous attempts to solve it, and why those 
+  attempts were limited (this might be two paragraphs).
+  2. Describe the approach (very briefly), and provide an overview of what is 
+  to come. "In this paper we present ..."
+  
+
+<!--chapter:end:index.Rmd-->
+
+# METHODS
+
+```{r setup, include = FALSE}
+# load R libraries here; the `include` flag in the chunk options above tells
+# whether to print the results or not. Usually you don't want to print the
+# library statements, or any code on the pdf.
+
+# Main Packages ========
+# I use these in every doc
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(modelsummary)
+
+options(dplyr.summarise.inform = FALSE)
+
+# Other packages ------
+# These sometimes get used, and sometimes don't.
+library(mlogit)
+
+# Instructions and options =========
+# prints missing data in tables as blank space
+options(knitr.kable.NA = '') 
+# tells kableExtra to not load latex table packages in the chunk output
+options(kableExtra.latex.load_packages = FALSE) 
+
+# round and format numbers that get printed in the text of the article.
+inline_hook <- function(x) {
+  if (is.numeric(x)) {
+    format(x, digits = 3, big.mark = ",")
+  } else x
+}
+knitr::knit_hooks$set(inline = inline_hook)
+
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+
+# options for latex-only output
+if(knitr::is_latex_output()) {
+  knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+} 
+
+```
+
+In this chapter, you describe the approach you have taken on the problem. This 
+usually involves a discussion about both the data you used and the models you
+applied.
+
+## Data
+
+Discuss where you got your data, how you cleaned it, any assumptions you made.
+
+```{r load_data}
+data("Car", package = "mlogit")
+car_mlogit <- Car %>%
+  mutate(choice = gsub("choice", "", choice)) %>%
+  dfidx( varying = 5:70, shape = "wide", choice = "choice", sep = "")
+```
+
+Often there will be a table describing summary statistics of your dataset.
+Table \@ref(tab:datasummary) shows a nice table using the [`datasummary`](https://vincentarelbundock.github.io/modelsummary/articles/datasummary.html) 
+functions in the `modelsummary` package.
+
+```{r datasummary}
+datasummary_balance(
+  ~type, 
+  data = car_mlogit %>% 
+    select(type, fuel, price, range, size), 
+  dinm = FALSE,
+  title = "Descriptive Statistics of Dataset"
+  )
+```
+
+## Models
+
+If your work is mostly a new model, you probably will have introduced some
+details in the literature review. But this is where you describe the
+mathematical construction of your model, the variables it uses, and other
+things. Some methods are so common (linear regression) that it is unnecessary to
+explore them in detail. But others will need to be described, often with
+mathematics.  For example, the probability of a multinomial logit model is
+
+\begin{equation}
+  P_i(X_{in}) = \frac{e^{X_{in}\beta_i}}{\sum_{j \in J}e^{X_{jn}\beta_j}}
+  (\#eq:mnl)
+\end{equation}
+
+Use [LaTeX mathematics](https://www.overleaf.com/learn/latex/mathematical_expressions). 
+You'll want to number display equations so that you can
+refer to them later in the manuscript. Other simpler math can be described inline,
+like saying that $i, j \in J$. Details on using equations in bookdown are available
+[here](https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html).
+
+<!--chapter:end:02-METHODS.Rmd-->
+
+# FINDINGS
+
+This section might be called "Results" instead of "Applications," depending
+on what it is that you are working on. But you'll probably say something like 
+"The initial model estimation results are given in Table \@ref(tab:estimation-results)."
+That table is created with the `modelsummary()` package and function.
+
+```{r estimation}
+model1 <- mlogit(choice ~ type + price | -1, data = car_mlogit)
+model2 <- update(model1, .~. + range)
+
+models <- list("Model 1" = model1, "Model 2" = model2)
+```
+
+
+```{r estimation-results}
+modelsummary(models, estimate = "{estimate} ({statistic})",
+             title = "Model Estimation Results")
+```
+
+With those results presented, you can go into a discussion of what they mean.
+first, discuss the actual results that are shown in the table, and then any 
+interesting or unintuitive observations.
+
+## Additional Analysis
+
+Usually, it is good to use your model for something.
+
+  - Hypothetical policy analysis
+  - Statistical validation effort
+  - Equity or impact analysis
+  
+If the analysis is substantial, it might become its own top-level section.
+
+<!--chapter:end:03-FINDINGS.Rmd-->
+
+`r if (knitr::is_html_output()) '
+# References {-}
+'`
+
+<!--chapter:end:04-references.Rmd-->
+
