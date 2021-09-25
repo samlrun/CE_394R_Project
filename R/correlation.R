@@ -26,8 +26,6 @@ df <- read_csv("R/Crash_Data_14-20.csv") %>%
   table() %>%
   print()
 
-write.csv(df,"R/sev_correlation.csv",row.names=FALSE)
-
 # Plot the table ########
 
 # Side-by-side bar
@@ -65,9 +63,12 @@ df <- read_csv("R/CAMS_Crashes_14-18.csv") %>%
   ) %>%
   print()
 
-cbind(rowSums(df[]))
-df %>%
-  cbind()
+# I just wrote to csv and edited in excel
+write.csv(df,"R/sev_correlation.csv",row.names=FALSE)
+
+df <- read_csv("R/sev_correlation2.csv") %>%
+  as_tibble() %>%
+  print()
 
 # Correlation matrix for data frame
 df %>%
@@ -78,7 +79,7 @@ df %>%
 
 # Can test one pair of variables at a time
 # Gives r, hypothesis test, and confidence interval
-cor.test(df$Sev_5+df$Sev_4+df$Sev_3, df$Angle)
+cor.test(df$Severe, df$Angle)
 
 # P-VALUES FOR MATRIX ######################################
 
@@ -97,6 +98,155 @@ df %>%
 df %>%
   plot()  # Plot all associations
 
+
+
 df %>%
-  select(c(Head_On, Sev_3)) %>% 
-  plot()
+  select(c(Angle, `Sev_4-5`)) %>% 
+  plot(
+    main = "Correlation Between Angle Crashes and Severe Crashes at Segments",
+    xlab = "Angle Crashes",
+    ylab = "Severity 4-5 Crashes",
+    col = "gray",
+    col.axis = "black",
+    pch = 20
+  )
+
+df %>%
+  lm(`Sev_4-5` ~ Angle, data = .) %>%
+  abline()
+
+
+
+df %>%
+  select(c(Front_to_Rear, `Sev_4-5`)) %>%
+  plot(
+    main = "Correlation Between Front to Rear Crashes and Severe Crashes at Segments",
+    xlab = "Front to Rear Crashes",
+    ylab = "Severity 4-5 Crashes",
+    col = "gray",
+    col.axis = "black",
+    pch = 20
+  )
+
+df %>%
+  lm(`Sev_4-5` ~ Front_to_Rear, data = .) %>%
+  abline()
+
+
+
+df %>%
+  select(c(Head_On, `Sev_4-5`)) %>% 
+  plot(
+    main = "Correlation Between Head On Crashes and Severe Crashes at Segments",
+    xlab = "Head On Crashes",
+    ylab = "Severity 4-5 Crashes",
+    col = "gray",
+    col.axis = "black",
+    pch = 20
+  )
+
+df %>%
+  lm(`Sev_4-5` ~ Head_On, data = .) %>%
+  abline()
+
+
+
+df %>%
+  select(c(Sideswipe_Same_Dir, `Sev_4-5`)) %>% 
+  plot(
+    main = "Correlation Between Sideswipe (Same Direction) Crashes and Severe Crashes at Segments",
+    xlab = "Sideswipe (Same Direction) Crashes",
+    ylab = "Severity 4-5 Crashes",
+    col = "gray",
+    col.axis = "black",
+    pch = 20
+  )
+
+df %>%
+  lm(`Sev_4-5` ~ Sideswipe_Same_Dir, data = .) %>%
+  abline()
+
+
+
+df %>%
+  select(c(Sideswipe_Opp_Dir, `Sev_4-5`)) %>% 
+  plot(
+    main = "Correlation Between Sideswipe (Opposite Direction) Crashes and Severe Crashes at Segments",
+    xlab = "Sideswipe (Opposite Direction) Crashes",
+    ylab = "Severity 4-5 Crashes",
+    col = "gray",
+    col.axis = "black",
+    pch = 20
+  )
+
+df %>%
+  lm(`Sev_4-5` ~ Sideswipe_Opp_Dir, data = .) %>%
+  abline()
+
+
+
+df %>%
+  select(c(Parked_Veh, `Sev_4-5`)) %>% 
+  plot(
+    main = "Correlation Between Parked Vehicle Crashes and Severe Crashes at Segments",
+    xlab = "Parked Vehicle Crashes Crashes",
+    ylab = "Severity 4-5 Crashes",
+    col = "gray",
+    col.axis = "black",
+    pch = 20
+  )
+
+df %>%
+  lm(`Sev_4-5` ~ Parked_Veh, data = .) %>%
+  abline()
+
+
+
+df %>%
+  select(c(Rear_to_Side, `Sev_4-5`)) %>% 
+  plot(
+    main = "Correlation Between Rear to Side Crashes and Severe Crashes at Segments",
+    xlab = "Rear to Side Crashes",
+    ylab = "Severity 4-5 Crashes",
+    col = "gray",
+    col.axis = "black",
+    pch = 20
+  )
+
+df %>%
+  lm(`Sev_4-5` ~ Rear_to_Side, data = .) %>%
+  abline()
+
+
+
+df %>%
+  select(c(Rear_to_Rear, `Sev_4-5`)) %>% 
+  plot(
+    main = "Correlation Between Rear to Rear Crashes and Severe Crashes at Segments",
+    xlab = "Rear to Rear Crashes",
+    ylab = "Severity 4-5 Crashes",
+    col = "gray",
+    col.axis = "black",
+    pch = 20
+  )
+
+df %>%
+  lm(`Sev_4-5` ~ Rear_to_Rear, data = .) %>%
+  abline()
+
+
+
+df %>%
+  select(c(Single_Veh, `Sev_4-5`)) %>% 
+  plot(
+    main = "Correlation Between Single Vehicle Crashes and Severe Crashes at Segments",
+    xlab = "Single Vehicle Crashes",
+    ylab = "Severity 4-5 Crashes",
+    col = "gray",
+    col.axis = "black",
+    pch = 20
+  )
+
+df %>%
+  lm(`Sev_4-5` ~ Single_Veh, data = .) %>%
+  abline()
