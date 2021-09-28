@@ -40,11 +40,11 @@ df %>%
 # Improved Code
 # CORRELATION MATRIX #######################################
 
-df <- read_csv("R/CAMS_Crashes_14-18.csv") %>%
+df <- read_csv("R/ISAM_Crashes_14-18.csv") %>%
   as_tibble() %>%
-  select(c(SEG_ID,MANNER_COLLISION_ID,CRASH_SEVERITY_ID)) %>%
+  select(c(INT_ID,MANNER_COLLISION_ID,CRASH_SEVERITY_ID)) %>%
   filter(MANNER_COLLISION_ID != 97 & MANNER_COLLISION_ID != 99 & MANNER_COLLISION_ID != 89) %>%
-  group_by(SEG_ID) %>%
+  group_by(INT_ID) %>%
   summarize(
     Angle = sum(MANNER_COLLISION_ID == 1),
     Front_to_Rear = sum(MANNER_COLLISION_ID == 2),
@@ -66,6 +66,7 @@ df <- read_csv("R/CAMS_Crashes_14-18.csv") %>%
 # I just wrote to csv and edited in excel
 write.csv(df,"R/sev_correlation.csv",row.names=FALSE)
 
+# includes sev 3-5 and sev 4-5 cols
 df <- read_csv("R/sev_correlation2.csv") %>%
   as_tibble() %>%
   print()
@@ -101,152 +102,152 @@ df %>%
 
 
 df %>%
-  select(c(Angle, `Sev_4-5`)) %>% 
+  select(c(Angle, `Sev_3-5`)) %>% 
   plot(
-    main = "Correlation Between Angle Crashes and Severe Crashes at Segments",
+    main = "Correlation Between Angle Crashes and Severe Crashes at Intersections",
     xlab = "Angle Crashes",
-    ylab = "Severity 4-5 Crashes",
+    ylab = "Severity 3-5 Crashes",
     col = "gray",
     col.axis = "black",
     pch = 20
   )
 
 df %>%
-  lm(`Sev_4-5` ~ Angle, data = .) %>%
+  lm(`Sev_3-5` ~ Angle, data = .) %>%
   abline()
 
 
 
 df %>%
-  select(c(Front_to_Rear, `Sev_4-5`)) %>%
+  select(c(Front_to_Rear, `Sev_3-5`)) %>%
   plot(
-    main = "Correlation Between Front to Rear Crashes and Severe Crashes at Segments",
+    main = "Correlation Between Front to Rear Crashes and Severe Crashes at Intersections",
     xlab = "Front to Rear Crashes",
-    ylab = "Severity 4-5 Crashes",
+    ylab = "Severity 3-5 Crashes",
     col = "gray",
     col.axis = "black",
     pch = 20
   )
 
 df %>%
-  lm(`Sev_4-5` ~ Front_to_Rear, data = .) %>%
+  lm(`Sev_3-5` ~ Front_to_Rear, data = .) %>%
   abline()
 
 
 
 df %>%
-  select(c(Head_On, `Sev_4-5`)) %>% 
+  select(c(Head_On, `Sev_3-5`)) %>% 
   plot(
-    main = "Correlation Between Head On Crashes and Severe Crashes at Segments",
+    main = "Correlation Between Head On Crashes and Severe Crashes at Intersections",
     xlab = "Head On Crashes",
-    ylab = "Severity 4-5 Crashes",
+    ylab = "Severity 3-5 Crashes",
     col = "gray",
     col.axis = "black",
     pch = 20
   )
 
 df %>%
-  lm(`Sev_4-5` ~ Head_On, data = .) %>%
+  lm(`Sev_3-5` ~ Head_On, data = .) %>%
   abline()
 
 
 
 df %>%
-  select(c(Sideswipe_Same_Dir, `Sev_4-5`)) %>% 
+  select(c(Sideswipe_Same_Dir, `Sev_3-5`)) %>% 
   plot(
-    main = "Correlation Between Sideswipe (Same Direction) Crashes and Severe Crashes at Segments",
+    main = "Correlation Between Sideswipe (Same Direction) Crashes and Severe Crashes at Intersections",
     xlab = "Sideswipe (Same Direction) Crashes",
-    ylab = "Severity 4-5 Crashes",
+    ylab = "Severity 3-5 Crashes",
     col = "gray",
     col.axis = "black",
     pch = 20
   )
 
 df %>%
-  lm(`Sev_4-5` ~ Sideswipe_Same_Dir, data = .) %>%
+  lm(`Sev_3-5` ~ Sideswipe_Same_Dir, data = .) %>%
   abline()
 
 
 
 df %>%
-  select(c(Sideswipe_Opp_Dir, `Sev_4-5`)) %>% 
+  select(c(Sideswipe_Opp_Dir, `Sev_3-5`)) %>% 
   plot(
-    main = "Correlation Between Sideswipe (Opposite Direction) Crashes and Severe Crashes at Segments",
+    main = "Correlation Between Sideswipe (Opposite Direction) Crashes and Severe Crashes at Intersections",
     xlab = "Sideswipe (Opposite Direction) Crashes",
-    ylab = "Severity 4-5 Crashes",
+    ylab = "Severity 3-5 Crashes",
     col = "gray",
     col.axis = "black",
     pch = 20
   )
 
 df %>%
-  lm(`Sev_4-5` ~ Sideswipe_Opp_Dir, data = .) %>%
+  lm(`Sev_3-5` ~ Sideswipe_Opp_Dir, data = .) %>%
   abline()
 
 
 
 df %>%
-  select(c(Parked_Veh, `Sev_4-5`)) %>% 
+  select(c(Parked_Veh, `Sev_3-5`)) %>% 
   plot(
-    main = "Correlation Between Parked Vehicle Crashes and Severe Crashes at Segments",
+    main = "Correlation Between Parked Vehicle Crashes and Severe Crashes at Intersections",
     xlab = "Parked Vehicle Crashes Crashes",
-    ylab = "Severity 4-5 Crashes",
+    ylab = "Severity 3-5 Crashes",
     col = "gray",
     col.axis = "black",
     pch = 20
   )
 
 df %>%
-  lm(`Sev_4-5` ~ Parked_Veh, data = .) %>%
+  lm(`Sev_3-5` ~ Parked_Veh, data = .) %>%
   abline()
 
 
 
 df %>%
-  select(c(Rear_to_Side, `Sev_4-5`)) %>% 
+  select(c(Rear_to_Side, `Sev_3-5`)) %>% 
   plot(
-    main = "Correlation Between Rear to Side Crashes and Severe Crashes at Segments",
+    main = "Correlation Between Rear to Side Crashes and Severe Crashes at Intersections",
     xlab = "Rear to Side Crashes",
-    ylab = "Severity 4-5 Crashes",
+    ylab = "Severity 3-5 Crashes",
     col = "gray",
     col.axis = "black",
     pch = 20
   )
 
 df %>%
-  lm(`Sev_4-5` ~ Rear_to_Side, data = .) %>%
+  lm(`Sev_3-5` ~ Rear_to_Side, data = .) %>%
   abline()
 
 
 
 df %>%
-  select(c(Rear_to_Rear, `Sev_4-5`)) %>% 
+  select(c(Rear_to_Rear, `Sev_3-5`)) %>% 
   plot(
-    main = "Correlation Between Rear to Rear Crashes and Severe Crashes at Segments",
+    main = "Correlation Between Rear to Rear Crashes and Severe Crashes at Intersections",
     xlab = "Rear to Rear Crashes",
-    ylab = "Severity 4-5 Crashes",
+    ylab = "Severity 3-5 Crashes",
     col = "gray",
     col.axis = "black",
     pch = 20
   )
 
 df %>%
-  lm(`Sev_4-5` ~ Rear_to_Rear, data = .) %>%
+  lm(`Sev_3-5` ~ Rear_to_Rear, data = .) %>%
   abline()
 
 
 
 df %>%
-  select(c(Single_Veh, `Sev_4-5`)) %>% 
+  select(c(Single_Veh, `Sev_3-5`)) %>% 
   plot(
-    main = "Correlation Between Single Vehicle Crashes and Severe Crashes at Segments",
+    main = "Correlation Between Single Vehicle Crashes and Severe Crashes at Intersections",
     xlab = "Single Vehicle Crashes",
-    ylab = "Severity 4-5 Crashes",
+    ylab = "Severity 3-5 Crashes",
     col = "gray",
     col.axis = "black",
     pch = 20
   )
 
 df %>%
-  lm(`Sev_4-5` ~ Single_Veh, data = .) %>%
+  lm(`Sev_3-5` ~ Single_Veh, data = .) %>%
   abline()
