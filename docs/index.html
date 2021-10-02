@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Article Long Title</title>
   <meta name="description" content="A short description" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Article Long Title" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-08-17" />
+<meta name="date" content="2021-10-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -42,8 +42,9 @@ div.abstract{
   width: 90%;
 }
 </style>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -51,7 +52,6 @@ div.abstract{
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -205,22 +205,22 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">Article Long Title</h1>
-<p class="author" style="margin: 0.5em 0 -0.5em 0;"><em>Gregory Macfarlane</em></p>
+<p class="author multi-author"><em>Gregory Macfarlane</em></p>
 <address class="author_afil">
 Brigham Young University<br>
 <a class="author_email" href="mailto:#"><a href="mailto:gregmacfarlane@byu.edu" class="email">gregmacfarlane@byu.edu</a></a>
 </address>
-<p class="author" style="margin: 0.5em 0 -0.5em 0;"><em>Cosmo Cougar</em></p>
+<p class="author multi-author"><em>Cosmo Cougar</em></p>
 <address class="author_afil">
 Brigham Young University<br>
 <a class="author_email" href="mailto:#"><a href="mailto:bob@example.com" class="email">bob@example.com</a></a>
 </address>
-<p class="author" style="margin: 0.5em 0 -0.5em 0;"><em>Masters Student</em></p>
+<p class="author multi-author"><em>Masters Student</em></p>
 <address class="author_afil">
 Brigham Young University<br>
 <a class="author_email" href="mailto:#"><a href="mailto:cat@example.com" class="email">cat@example.com</a></a>
 </address>
-<p class="date" style="margin-top: 1.5em;"><em>2021-08-17</em></p>
+<p class="date"><em>2021-10-01</em></p>
 <div class="abstract">
 <p class="abstract">Abstract</p>
 <p>This is where the abstract should go.</p>
@@ -238,7 +238,7 @@ has been shared by others. Particular note belongs to:</p>
 <li>Lisa Rosenstein</li>
 <li>Kara Kockelman</li>
 </ul>
-<p>The introduction of your report is not simply an “introduction,” but rather a
+<p>The introduction of your report is not simply an “introduction”, but rather a
 <strong>motivation</strong> of why your project matters. What is the cost of not solving
 this problem? What have been previous attempts to solve this problem? The <em>why</em>
 is more important than the <em>what</em>. Why is this article worthy of archiving?</p>
@@ -262,7 +262,6 @@ to come. “In this paper we present …”</li>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -302,6 +301,10 @@ gitbook.start({
 "text": null
 },
 "download": ["project_name.pdf", "project_name.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
