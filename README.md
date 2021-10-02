@@ -7,4 +7,4 @@ The purpose of this article is to answer the question, "What are the significant
 
 This article is constructed with Bookdown.
 
-The dataset files and R scripts used to conduct analysis are contained in the folder titled "Correlation_Model". These include sensitive crash data provided by UDOT.
+The dataset files and R scripts used to conduct analysis are not contained in this github repository. These include sensitive crash data provided by UDOT.
