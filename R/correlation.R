@@ -1,5 +1,16 @@
-library(tidyverse)
-library(pacman)
+# INSTALL AND LOAD PACKAGES ################################
+
+# Install pacman ("package manager") if needed
+if (!require("pacman")) install.packages("pacman")
+
+# pacman must already be installed; then load contributed
+# packages (including pacman) with pacman
+pacman::p_load(corrplot, magrittr, pacman, rio, tidyverse)
+# corrplot: for visualizing correlation matrices
+# magrittr: for pipes
+# pacman: for loading/unloading packages
+# rio: for importing data
+# tidyverse: for so many reasons
 
 # First Attempt - ignore #######
 df <- read_csv("R/Crash_Data_14-20.csv") %>%
@@ -40,11 +51,11 @@ df %>%
 # Improved Code
 # CORRELATION MATRIX #######################################
 
-df <- read_csv("R/ISAM_Crashes_14-18.csv") %>%
+df <- read_csv("data/CAMS_Crashes_14-21.csv") %>%
   as_tibble() %>%
-  select(c(INT_ID,MANNER_COLLISION_ID,CRASH_SEVERITY_ID)) %>%
+  select(c(SEG_ID,MANNER_COLLISION_ID,CRASH_SEVERITY_ID)) %>%
   filter(MANNER_COLLISION_ID != 97 & MANNER_COLLISION_ID != 99 & MANNER_COLLISION_ID != 89) %>%
-  group_by(INT_ID) %>%
+  group_by(SEG_ID) %>%
   summarize(
     Angle = sum(MANNER_COLLISION_ID == 1),
     Front_to_Rear = sum(MANNER_COLLISION_ID == 2),
@@ -60,21 +71,34 @@ df <- read_csv("R/ISAM_Crashes_14-18.csv") %>%
     Sev_3 = sum(CRASH_SEVERITY_ID == 3),
     Sev_4 = sum(CRASH_SEVERITY_ID == 4),
     Sev_5 = sum(CRASH_SEVERITY_ID == 5),
+    'Sev_3-5' = sum(CRASH_SEVERITY_ID == 3, CRASH_SEVERITY_ID == 4, CRASH_SEVERITY_ID == 5),
+    'Sev_4-5' = sum(CRASH_SEVERITY_ID == 4, CRASH_SEVERITY_ID == 5),
   ) %>%
   print()
 
-# I just wrote to csv and edited in excel
-write.csv(df,"R/sev_correlation.csv",row.names=FALSE)
-
-# includes sev 3-5 and sev 4-5 cols
-df <- read_csv("R/sev_correlation2.csv") %>%
-  as_tibble() %>%
+# Correlation matrix for data frame
+cortable <- df %>%
+  cor() %>%
+  round(2) %>%
   print()
 
-# Correlation matrix for data frame
+cortable <- cortable[11:17,2:10] %>%
+  as.data.frame()
+
+# Visualize correlation matrix with corrplot() from
+# corrplot package
 df %>%
   cor() %>%
-  round(2)
+  corrplot(
+    type   = "upper",     # Matrix: full, upper, or lower
+    diag   = F,           # Remove diagonal
+    order  = "original",  # Order for labels
+    tl.col = "black",     # Font color
+    tl.srt = 45           # Label angle
+  )
+
+# I just wrote to csv and edited in excel
+write.csv(df,"data/sev_correlation.csv",row.names=FALSE)
 
 # SINGLE CORRELATION #######################################
 
