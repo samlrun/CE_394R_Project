@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-10-01" />
+<meta name="date" content="2021-10-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -66,70 +66,6 @@ div.abstract{
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 <style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
@@ -209,445 +145,213 @@ applied.</p>
 <div id="data" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Data</h2>
 <p>Discuss where you got your data, how you cleaned it, any assumptions you made.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="methods.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;Car&quot;</span>, <span class="at">package =</span> <span class="st">&quot;mlogit&quot;</span>)</span>
-<span id="cb1-2"><a href="methods.html#cb1-2" aria-hidden="true" tabindex="-1"></a>car_mlogit <span class="ot">&lt;-</span> Car <span class="sc">%&gt;%</span></span>
-<span id="cb1-3"><a href="methods.html#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">choice =</span> <span class="fu">gsub</span>(<span class="st">&quot;choice&quot;</span>, <span class="st">&quot;&quot;</span>, choice)) <span class="sc">%&gt;%</span></span>
-<span id="cb1-4"><a href="methods.html#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfidx</span>( <span class="at">varying =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">70</span>, <span class="at">shape =</span> <span class="st">&quot;wide&quot;</span>, <span class="at">choice =</span> <span class="st">&quot;choice&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <p>Often there will be a table describing summary statistics of your dataset.
 Table <a href="methods.html#tab:datasummary">2.1</a> shows a nice table using the <a href="https://vincentarelbundock.github.io/modelsummary/articles/datasummary.html"><code>datasummary</code></a>
 functions in the <code>modelsummary</code> package.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="methods.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">datasummary_balance</span>(</span>
-<span id="cb2-2"><a href="methods.html#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>type, </span>
-<span id="cb2-3"><a href="methods.html#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> car_mlogit <span class="sc">%&gt;%</span> </span>
-<span id="cb2-4"><a href="methods.html#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(type, fuel, price, range, size), </span>
-<span id="cb2-5"><a href="methods.html#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dinm =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb2-6"><a href="methods.html#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Descriptive Statistics of Dataset&quot;</span></span>
-<span id="cb2-7"><a href="methods.html#cb2-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:datasummary">Table 2.1: </span>Descriptive Statistics of Dataset
+<span id="tab:datasummary">Table 2.1: </span>Correlation Matrix
 </caption>
 <thead>
 <tr>
-<th style="empty-cells: hide;border-bottom:hidden;" colspan="2">
-</th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-regcar (N=10930)
-</div>
-</th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-sportuv (N=1048)
-</div>
-</th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-sportcar (N=880)
-</div>
-</th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-stwagon (N=4446)
-</div>
-</th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-truck (N=5628)
-</div>
-</th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-van (N=4992)
-</div>
-</th>
-</tr>
-<tr>
 <th style="text-align:left;">
 </th>
-<th style="text-align:left;">
+<th style="text-align:center;">
+Severity 1 (Property Damage Only)
 </th>
-<th style="text-align:right;">
-Mean
+<th style="text-align:center;">
+Severity 2 (Possible Injury)
 </th>
-<th style="text-align:right;">
-Std. Dev.
+<th style="text-align:center;">
+Severity 3 (Suspected Minor Injury)
 </th>
-<th style="text-align:right;">
-Mean
+<th style="text-align:center;">
+Severity 4 (Suspected Major Injury)
 </th>
-<th style="text-align:right;">
-Std. Dev.
-</th>
-<th style="text-align:right;">
-Mean
-</th>
-<th style="text-align:right;">
-Std. Dev.
-</th>
-<th style="text-align:right;">
-Mean
-</th>
-<th style="text-align:right;">
-Std. Dev.
-</th>
-<th style="text-align:right;">
-Mean
-</th>
-<th style="text-align:right;">
-Std. Dev.
-</th>
-<th style="text-align:right;">
-Mean
-</th>
-<th style="text-align:right;">
-Std. Dev.
+<th style="text-align:center;">
+Severity 5 (Fatal Injury)
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
-price
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Angle
 </td>
-<td style="text-align:left;">
+<td style="text-align:center;width: 8em; ">
+0.48
 </td>
-<td style="text-align:right;">
-4.2
+<td style="text-align:center;width: 8em; ">
+0.56
 </td>
-<td style="text-align:right;">
-1.9
+<td style="text-align:center;width: 8em; ">
+0.62
 </td>
-<td style="text-align:right;">
-4.7
+<td style="text-align:center;width: 8em; ">
+0.42
 </td>
-<td style="text-align:right;">
-1.9
-</td>
-<td style="text-align:right;">
-4.8
-</td>
-<td style="text-align:right;">
-2.2
-</td>
-<td style="text-align:right;">
-4.1
-</td>
-<td style="text-align:right;">
-1.9
-</td>
-<td style="text-align:right;">
-4.2
-</td>
-<td style="text-align:right;">
-2.0
-</td>
-<td style="text-align:right;">
-4.2
-</td>
-<td style="text-align:right;">
-1.9
+<td style="text-align:center;width: 8em; ">
+0.18
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-range
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Front to Rear
 </td>
-<td style="text-align:left;">
+<td style="text-align:center;width: 8em; ">
+0.87
 </td>
-<td style="text-align:right;">
-237.2
+<td style="text-align:center;width: 8em; ">
+0.94
 </td>
-<td style="text-align:right;">
-94.5
+<td style="text-align:center;width: 8em; ">
+0.73
 </td>
-<td style="text-align:right;">
-241.6
+<td style="text-align:center;width: 8em; ">
+0.38
 </td>
-<td style="text-align:right;">
-94.7
-</td>
-<td style="text-align:right;">
-233.6
-</td>
-<td style="text-align:right;">
-96.7
-</td>
-<td style="text-align:right;">
-238.7
-</td>
-<td style="text-align:right;">
-94.3
-</td>
-<td style="text-align:right;">
-238.2
-</td>
-<td style="text-align:right;">
-93.1
-</td>
-<td style="text-align:right;">
-236.8
-</td>
-<td style="text-align:right;">
-94.7
+<td style="text-align:center;width: 8em; ">
+0.14
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
-size
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Head on
 </td>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:center;width: 8em; ">
+0.45
 </td>
-<td style="text-align:right;box-shadow: 0px 1px">
-2.4
+<td style="text-align:center;width: 8em; ">
+0.50
 </td>
-<td style="text-align:right;box-shadow: 0px 1px">
-0.8
+<td style="text-align:center;width: 8em; ">
+0.55
 </td>
-<td style="text-align:right;box-shadow: 0px 1px">
-2.1
+<td style="text-align:center;width: 8em; ">
+0.39
 </td>
-<td style="text-align:right;box-shadow: 0px 1px">
-1.0
-</td>
-<td style="text-align:right;box-shadow: 0px 1px">
-1.4
-</td>
-<td style="text-align:right;box-shadow: 0px 1px">
-1.0
-</td>
-<td style="text-align:right;box-shadow: 0px 1px">
-2.3
-</td>
-<td style="text-align:right;box-shadow: 0px 1px">
-0.8
-</td>
-<td style="text-align:right;box-shadow: 0px 1px">
-2.4
-</td>
-<td style="text-align:right;box-shadow: 0px 1px">
-0.8
-</td>
-<td style="text-align:right;box-shadow: 0px 1px">
-2.5
-</td>
-<td style="text-align:right;box-shadow: 0px 1px">
-0.7
+<td style="text-align:center;width: 8em; ">
+0.30
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Sideswipe in the Same Direction
 </td>
-<td style="text-align:left;">
+<td style="text-align:center;width: 8em; ">
+0.88
 </td>
-<td style="text-align:right;">
-N
+<td style="text-align:center;width: 8em; ">
+0.86
 </td>
-<td style="text-align:right;">
-Pct.
+<td style="text-align:center;width: 8em; ">
+0.74
 </td>
-<td style="text-align:right;">
-N
+<td style="text-align:center;width: 8em; ">
+0.44
 </td>
-<td style="text-align:right;">
-Pct.
-</td>
-<td style="text-align:right;">
-N
-</td>
-<td style="text-align:right;">
-Pct.
-</td>
-<td style="text-align:right;">
-N
-</td>
-<td style="text-align:right;">
-Pct.
-</td>
-<td style="text-align:right;">
-N
-</td>
-<td style="text-align:right;">
-Pct.
-</td>
-<td style="text-align:right;">
-N
-</td>
-<td style="text-align:right;">
-Pct.
+<td style="text-align:center;width: 8em; ">
+0.20
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-fuel
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Sideswipe in the Opposite Direction
 </td>
-<td style="text-align:left;">
-gasoline
+<td style="text-align:center;width: 8em; ">
+0.34
 </td>
-<td style="text-align:right;">
-2704
+<td style="text-align:center;width: 8em; ">
+0.35
 </td>
-<td style="text-align:right;">
-24.7
+<td style="text-align:center;width: 8em; ">
+0.46
 </td>
-<td style="text-align:right;">
-280
+<td style="text-align:center;width: 8em; ">
+0.39
 </td>
-<td style="text-align:right;">
-26.7
-</td>
-<td style="text-align:right;">
-218
-</td>
-<td style="text-align:right;">
-24.8
-</td>
-<td style="text-align:right;">
-1096
-</td>
-<td style="text-align:right;">
-24.7
-</td>
-<td style="text-align:right;">
-1413
-</td>
-<td style="text-align:right;">
-25.1
-</td>
-<td style="text-align:right;">
-1247
-</td>
-<td style="text-align:right;">
-25.0
+<td style="text-align:center;width: 8em; ">
+0.29
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Collision with Parked Vehicle
 </td>
-<td style="text-align:left;">
-methanol
+<td style="text-align:center;width: 8em; ">
+0.38
 </td>
-<td style="text-align:right;">
-2729
+<td style="text-align:center;width: 8em; ">
+0.36
 </td>
-<td style="text-align:right;">
-25.0
+<td style="text-align:center;width: 8em; ">
+0.42
 </td>
-<td style="text-align:right;">
-246
+<td style="text-align:center;width: 8em; ">
+0.30
 </td>
-<td style="text-align:right;">
-23.5
-</td>
-<td style="text-align:right;">
-225
-</td>
-<td style="text-align:right;">
-25.6
-</td>
-<td style="text-align:right;">
-1091
-</td>
-<td style="text-align:right;">
-24.5
-</td>
-<td style="text-align:right;">
-1445
-</td>
-<td style="text-align:right;">
-25.7
-</td>
-<td style="text-align:right;">
-1216
-</td>
-<td style="text-align:right;">
-24.4
+<td style="text-align:center;width: 8em; ">
+0.22
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Rear to Side
 </td>
-<td style="text-align:left;">
-cng
+<td style="text-align:center;width: 8em; ">
+0.14
 </td>
-<td style="text-align:right;">
-2767
+<td style="text-align:center;width: 8em; ">
+0.15
 </td>
-<td style="text-align:right;">
-25.3
+<td style="text-align:center;width: 8em; ">
+0.15
 </td>
-<td style="text-align:right;">
-260
+<td style="text-align:center;width: 8em; ">
+0.12
 </td>
-<td style="text-align:right;">
-24.8
-</td>
-<td style="text-align:right;">
-238
-</td>
-<td style="text-align:right;">
-27.0
-</td>
-<td style="text-align:right;">
-1109
-</td>
-<td style="text-align:right;">
-24.9
-</td>
-<td style="text-align:right;">
-1360
-</td>
-<td style="text-align:right;">
-24.2
-</td>
-<td style="text-align:right;">
-1282
-</td>
-<td style="text-align:right;">
-25.7
+<td style="text-align:center;width: 8em; ">
+0.09
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Rear to Rear
 </td>
-<td style="text-align:left;">
-electric
+<td style="text-align:center;width: 8em; ">
+0.20
 </td>
-<td style="text-align:right;">
-2730
+<td style="text-align:center;width: 8em; ">
+0.21
 </td>
-<td style="text-align:right;">
-25.0
+<td style="text-align:center;width: 8em; ">
+0.19
 </td>
-<td style="text-align:right;">
-262
+<td style="text-align:center;width: 8em; ">
+0.08
 </td>
-<td style="text-align:right;">
-25.0
+<td style="text-align:center;width: 8em; ">
+0.08
 </td>
-<td style="text-align:right;">
-199
+</tr>
+<tr>
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Single Vehicle Crash
 </td>
-<td style="text-align:right;">
-22.6
+<td style="text-align:center;width: 8em; ">
+0.71
 </td>
-<td style="text-align:right;">
-1150
+<td style="text-align:center;width: 8em; ">
+0.49
 </td>
-<td style="text-align:right;">
-25.9
+<td style="text-align:center;width: 8em; ">
+0.63
 </td>
-<td style="text-align:right;">
-1410
+<td style="text-align:center;width: 8em; ">
+0.62
 </td>
-<td style="text-align:right;">
-25.1
-</td>
-<td style="text-align:right;">
-1247
-</td>
-<td style="text-align:right;">
-25.0
+<td style="text-align:center;width: 8em; ">
+0.49
 </td>
 </tr>
 </tbody>

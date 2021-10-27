@@ -123,25 +123,32 @@ functions in the \texttt{modelsummary} package.
 
 \begin{table}
 
-\caption{\label{tab:datasummary}Descriptive Statistics of Dataset}
+\caption{\label{tab:datasummary}Correlation Matrix}
 \centering
-\begin{tabular}[t]{llrrrrrrrrrrrr}
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{>{\raggedright\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}}
 \toprule
-\multicolumn{2}{c}{ } & \multicolumn{2}{c}{regcar (N=10930)} & \multicolumn{2}{c}{sportuv (N=1048)} & \multicolumn{2}{c}{sportcar (N=880)} & \multicolumn{2}{c}{stwagon (N=4446)} & \multicolumn{2}{c}{truck (N=5628)} & \multicolumn{2}{c}{van (N=4992)} \\
-\cmidrule(l{3pt}r{3pt}){3-4} \cmidrule(l{3pt}r{3pt}){5-6} \cmidrule(l{3pt}r{3pt}){7-8} \cmidrule(l{3pt}r{3pt}){9-10} \cmidrule(l{3pt}r{3pt}){11-12} \cmidrule(l{3pt}r{3pt}){13-14}
-  &    & Mean & Std. Dev. & Mean  & Std. Dev.  & Mean   & Std. Dev.   & Mean    & Std. Dev.    & Mean     & Std. Dev.     & Mean      & Std. Dev.     \\
+  & Severity 1 (Property Damage Only) & Severity 2 (Possible Injury) & Severity 3 (Suspected Minor Injury) & Severity 4 (Suspected Major Injury) & Severity 5 (Fatal Injury)\\
 \midrule
-price &  & 4.2 & 1.9 & 4.7 & 1.9 & 4.8 & 2.2 & 4.1 & 1.9 & 4.2 & 2.0 & 4.2 & 1.9\\
-range &  & 237.2 & 94.5 & 241.6 & 94.7 & 233.6 & 96.7 & 238.7 & 94.3 & 238.2 & 93.1 & 236.8 & 94.7\\
-size &  & 2.4 & 0.8 & 2.1 & 1.0 & 1.4 & 1.0 & 2.3 & 0.8 & 2.4 & 0.8 & 2.5 & 0.7\\
-\midrule
- &  & N & Pct. & N & Pct. & N & Pct. & N & Pct. & N & Pct. & N & Pct.\\
-fuel & gasoline & 2704 & 24.7 & 280 & 26.7 & 218 & 24.8 & 1096 & 24.7 & 1413 & 25.1 & 1247 & 25.0\\
- & methanol & 2729 & 25.0 & 246 & 23.5 & 225 & 25.6 & 1091 & 24.5 & 1445 & 25.7 & 1216 & 24.4\\
- & cng & 2767 & 25.3 & 260 & 24.8 & 238 & 27.0 & 1109 & 24.9 & 1360 & 24.2 & 1282 & 25.7\\
- & electric & 2730 & 25.0 & 262 & 25.0 & 199 & 22.6 & 1150 & 25.9 & 1410 & 25.1 & 1247 & 25.0\\
+\cellcolor{gray!6}{\textbf{Angle}} & \cellcolor{gray!6}{0.48} & \cellcolor{gray!6}{0.56} & \cellcolor{gray!6}{0.62} & \cellcolor{gray!6}{0.42} & \cellcolor{gray!6}{0.18}\\
+\addlinespace
+\textbf{Front to Rear} & 0.87 & 0.94 & 0.73 & 0.38 & 0.14\\
+\addlinespace
+\cellcolor{gray!6}{\textbf{Head on}} & \cellcolor{gray!6}{0.45} & \cellcolor{gray!6}{0.50} & \cellcolor{gray!6}{0.55} & \cellcolor{gray!6}{0.39} & \cellcolor{gray!6}{0.30}\\
+\addlinespace
+\textbf{Sideswipe in the Same Direction} & 0.88 & 0.86 & 0.74 & 0.44 & 0.20\\
+\addlinespace
+\cellcolor{gray!6}{\textbf{Sideswipe in the Opposite Direction}} & \cellcolor{gray!6}{0.34} & \cellcolor{gray!6}{0.35} & \cellcolor{gray!6}{0.46} & \cellcolor{gray!6}{0.39} & \cellcolor{gray!6}{0.29}\\
+\addlinespace
+\textbf{Collision with Parked Vehicle} & 0.38 & 0.36 & 0.42 & 0.30 & 0.22\\
+\addlinespace
+\cellcolor{gray!6}{\textbf{Rear to Side}} & \cellcolor{gray!6}{0.14} & \cellcolor{gray!6}{0.15} & \cellcolor{gray!6}{0.15} & \cellcolor{gray!6}{0.12} & \cellcolor{gray!6}{0.09}\\
+\addlinespace
+\textbf{Rear to Rear} & 0.20 & 0.21 & 0.19 & 0.08 & 0.08\\
+\addlinespace
+\cellcolor{gray!6}{\textbf{Single Vehicle Crash}} & \cellcolor{gray!6}{0.71} & \cellcolor{gray!6}{0.49} & \cellcolor{gray!6}{0.63} & \cellcolor{gray!6}{0.62} & \cellcolor{gray!6}{0.49}\\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \end{table}
 
 \hypertarget{models}{%

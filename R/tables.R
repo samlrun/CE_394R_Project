@@ -13,7 +13,20 @@ pacman::p_load(corrplot, magrittr, pacman, rio, tidyverse, kableExtra)
 # tidyverse: for so many reasons
 # kableExtra: build nice tables
 
-# CORRELATION MATRIX #######################################
+
+# DESCRIPTIVE SUMMARY ######################################
+
+#df <- read_csv("data/CAMS_Crashes_14-21.csv") %>%
+#  as_tibble() %>%
+#  select(c(MANNER_COLLISION_ID,CRASH_SEVERITY_ID)) %>%
+#  filter(MANNER_COLLISION_ID != 97 & MANNER_COLLISION_ID != 99 & MANNER_COLLISION_ID != 89)
+
+#datasummary_balance(
+#  ~MANNER_COLLISION_ID, 
+#  data = df, 
+#  dinm = FALSE,
+#  title = "Descriptive Statistics of Dataset"
+#)
 
 df <- read_csv("data/CAMS_Crashes_14-21.csv") %>%
   as_tibble() %>%
@@ -34,22 +47,11 @@ df <- read_csv("data/CAMS_Crashes_14-21.csv") %>%
     Sev_2 = sum(CRASH_SEVERITY_ID == 2),
     Sev_3 = sum(CRASH_SEVERITY_ID == 3),
     Sev_4 = sum(CRASH_SEVERITY_ID == 4),
-    Sev_5 = sum(CRASH_SEVERITY_ID == 5),
-    'Sev_3-5' = sum(CRASH_SEVERITY_ID == 3, CRASH_SEVERITY_ID == 4, CRASH_SEVERITY_ID == 5),
-    'Sev_4-5' = sum(CRASH_SEVERITY_ID == 4, CRASH_SEVERITY_ID == 5),
+    Sev_5 = sum(CRASH_SEVERITY_ID == 5)
   ) %>%
-  print()
+  select(-SEG_ID)
 
-# Correlation matrix for data frame
-cortable <- df %>%
-  cor() %>%
-  round(2) %>%
-  print()
-
-cortable <- cortable[11:17,2:10] %>%
-  as.data.frame()
-
-colnames(cortable) <- c(
+colnames(df) <- c(
   "Angle",
   "Front to Rear",
   "Head on",
@@ -58,20 +60,82 @@ colnames(cortable) <- c(
   "Collision with Parked Vehicle",
   "Rear to Side",
   "Rear to Rear",
-  "Single Vehicle Crash"
-)
-
-rownames(cortable) <- c(
+  "Single Vehicle Crash",
   "Severity 1 (Property Damage Only)",
   "Severity 2 (Possible Injury)",
   "Severity 3 (Suspected Minor Injury)",
   "Severity 4 (Suspected Major Injury)",
-  "Severity 5 (Fatal Injury)",
-  "Severities 3-5 (Injury Crashes)",
-  "Severities 4-5 (Severe Injury Crashes)"
+  "Severity 5 (Fatal Injury)"
 )
 
+# Datasummary Correlation Table
+#datasummary_correlation(
+#  data = df,
+#  title = "Correlation Matrix",
+#  linesep = "\\addlinespace"
+#  ) %>%
+#  column_spec(1, bold = T, width = "8em") %>%
+#  column_spec(2, width = "10em") %>%
+#  column_spec(3, width = "10em") %>%
+#  column_spec(4, width = "10em") %>%
+#  column_spec(5, width = "10em") %>%
+#  column_spec(6, width = "10em") %>%
+#  column_spec(7, width = "10em") %>%
+#  column_spec(8, width = "10em") %>%
+#  column_spec(9, width = "10em") %>%
+#  column_spec(10, width = "10em") %>%
+#  column_spec(11, width = "10em") %>%
+#  column_spec(12, width = "10em") %>%
+#  column_spec(13, width = "10em") %>%
+#  column_spec(14, width = "10em") %>%
+#  kable_styling(
+#    latex_options = "scale_down",
+#    bootstrap_options = "condensed",
+#    full_width = F
+#    )
+
+# Correlation matrix for data frame
+cortable <- df %>%
+  cor() %>%
+  round(2)
+
+cortable <- cortable[1:9,10:14] %>%
+  as.data.frame()
+
 cortable %>%
-  kbl(booktabs = T, caption = "Correlation Matrix") %>%
-  column_spec(1, bold = T)
+  kbl(booktabs = T, caption = "Correlation Matrix", linesep = "\\addlinespace", align = "c") %>%
+  column_spec(1, bold = T, width = "8em") %>%
+  column_spec(2, width = "8em") %>%
+  column_spec(3, width = "8em") %>%
+  column_spec(4, width = "8em") %>%
+  column_spec(5, width = "8em") %>%
+  column_spec(6, width = "8em") %>%
+  kable_styling(
+    latex_options = c("scale_down","striped"),
+    bootstrap_options = "condensed",
+    full_width = F
+  )
+
+
+# CLEAN UP #################################################
+
+# Clear data
+rm(list = ls())  # Removes all objects from the environment
+
+# Clear packages
+detach("package:datasets", unload = T)  # For base packages
+p_unload(all)    # Remove all contributed packages
+
+# Clear plots
+graphics.off()   # Clears plots, closes all graphics devices
+
+# Clear console
+cat("\014")      # Mimics ctrl+L
+
+# Clear R
+#   You may want to use Session > Restart R, as well, which 
+#   resets changed options, relative paths, dependencies, 
+#   and so on to let you start with a clean slate
+
+# Clear mind :)
   

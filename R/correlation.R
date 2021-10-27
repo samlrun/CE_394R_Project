@@ -275,3 +275,27 @@ df %>%
 df %>%
   lm(`Sev_3-5` ~ Single_Veh, data = .) %>%
   abline()
+
+
+
+# CLEAN UP #################################################
+
+# Clear data
+rm(list = ls())  # Removes all objects from the environment
+
+# Clear packages
+detach("package:datasets", unload = T)  # For base packages
+p_unload(all)    # Remove all contributed packages
+
+# Clear plots
+graphics.off()   # Clears plots, closes all graphics devices
+
+# Clear console
+cat("\014")      # Mimics ctrl+L
+
+# Clear R
+#   You may want to use Session > Restart R, as well, which 
+#   resets changed options, relative paths, dependencies, 
+#   and so on to let you start with a clean slate
+
+# Clear mind :)
