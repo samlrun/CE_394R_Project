@@ -1,4 +1,40 @@
 ---
+title: "Vehicle Crash Severity Correlating Factors"
+author:
+- name: Samuel Runyan
+  email: samyan@byu.edu
+  affiliation: Brigham Young University
+  footnote: 1
+date: "`r Sys.Date()`"
+address:
+- code: Brigham Young University
+  address: Civil and Environmental Engineering Department, 430 Engineering Building,
+    Provo, Utah 84602
+site: bookdown::bookdown_site
+documentclass: article
+journal: Findings
+bibliography: book.bib
+biblio-style: apalike
+link-citations: yes
+abstract: |
+  This is where the abstract should go.
+description: The purpose of this article is to identify the most significant correlating factors to crash severity when performing highway safety analysis.
+layout: 3p, authoryear
+keywords:
+- Highway Safety Analysis
+- Crash Severity
+- Statistical Correlation
+---
+
+# QUESTIONS {#intro}
+
+Placeholder
+
+
+
+<!--chapter:end:index.Rmd-->
+
+---
 output:
   pdf_document: default
   html_document: default
@@ -176,3 +212,38 @@ You'll want to number display equations so that you can
 refer to them later in the manuscript. Other simpler math can be described inline,
 like saying that $i, j \in J$. Details on using equations in bookdown are available
 [here](https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html).
+
+<!--chapter:end:02-METHODS.Rmd-->
+
+# FINDINGS
+
+This section might be called "Results" instead of "Applications," depending
+on what it is that you are working on. But you'll probably say something like 
+"The initial model estimation results are given in Table \@ref(tab:estimation-results)."
+That table is created with the `modelsummary()` package and function.
+
+With those results presented, you can go into a discussion of what they mean.
+first, discuss the actual results that are shown in the table, and then any 
+interesting or unintuitive observations.
+
+## Additional Analysis
+
+Usually, it is good to use your model for something.
+
+  - Hypothetical policy analysis
+  - Statistical validation effort
+  - Equity or impact analysis
+  
+If the analysis is substantial, it might become its own top-level section.
+
+<!--chapter:end:03-FINDINGS.Rmd-->
+
+`r if (knitr::is_html_output()) '
+# References {-}
+'`
+---
+nocite: '@*'
+---
+
+<!--chapter:end:04-references.Rmd-->
+
