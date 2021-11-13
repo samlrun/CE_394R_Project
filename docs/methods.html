@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-10-26" />
+<meta name="date" content="2021-11-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -139,15 +139,21 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="methods" class="section level1" number="2">
 <h1><span class="header-section-number"> 2</span> METHODS</h1>
-<p>In this chapter, you describe the approach you have taken on the problem. This
-usually involves a discussion about both the data you used and the models you
-applied.</p>
+<p>In order to determine the correlation between crash severity and other factors,
+the Pearson correlation factors were determined for different factors. The
+equation below demonstrates how to calculate the Pearson correlation factor
+using two potentially correlated variables <a href="methods.html#eq:pearson">(2.1)</a>. In this experiment,
+manner of collision, presence of pedestrians, and other factors were compared to
+crash severity to determine correlation factors.</p>
+<p><span class="math display" id="eq:pearson">\[\begin{equation}
+  \rho = \frac{\text{cov}(X,Y)}{\sigma_x \sigma_y}
+  \tag{2.1}
+\end{equation}\]</span></p>
 <div id="data" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Data</h2>
-<p>Discuss where you got your data, how you cleaned it, any assumptions you made.</p>
-<p>Often there will be a table describing summary statistics of your dataset.
-Table <a href="methods.html#tab:datasummary">2.1</a> shows a nice table using the <a href="https://vincentarelbundock.github.io/modelsummary/articles/datasummary.html"><code>datasummary</code></a>
-functions in the <code>modelsummary</code> package.</p>
+<p>Crash data was retrieved from the Utah Department of Transportation (UDOT). The data was collected through police reports and contains information about crash severity, manner of collision, and other details. In order to perform analysis on the data, four crash files concerning crashes, crash details, location, and vehicles involved had to be combined. Then the the crashes were separated by segments and intersections to allow for consistent analysis.</p>
+<p>The data was then filtered to compare the crash severities and manners of collision for segments and intersections separately.
+Table <a href="methods.html#tab:datasummary">2.1</a> shows the Pearson correlation factors between crash severities and manners of collision for segments. The results are very similar for intersections except the correlation factors are slightly higher in general.</p>
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:datasummary">Table 2.1: </span>Correlation Matrix
@@ -359,21 +365,8 @@ Single Vehicle Crash
 </div>
 <div id="models" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Models</h2>
-<p>If your work is mostly a new model, you probably will have introduced some
-details in the literature review. But this is where you describe the
-mathematical construction of your model, the variables it uses, and other
-things. Some methods are so common (linear regression) that it is unnecessary to
-explore them in detail. But others will need to be described, often with
-mathematics. For example, the probability of a multinomial logit model is</p>
-<p><span class="math display" id="eq:mnl">\[\begin{equation}
-  P_i(X_{in}) = \frac{e^{X_{in}\beta_i}}{\sum_{j \in J}e^{X_{jn}\beta_j}}
-  \tag{2.1}
-\end{equation}\]</span></p>
-<p>Use <a href="https://www.overleaf.com/learn/latex/mathematical_expressions">LaTeX mathematics</a>.
-You’ll want to number display equations so that you can
-refer to them later in the manuscript. Other simpler math can be described inline,
-like saying that <span class="math inline">\(i, j \in J\)</span>. Details on using equations in bookdown are available
-<a href="https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html">here</a>.</p>
+<p>The segmentation method used in this model is based on characteristics like AADT and length to facilitate homogeneous segments. Intersection related crashes were determined by estimating the location of the stop bar given approach speeds. Considering that the segments and intersection are homogeneous and consistent, it is possible to calculate correlation between crash severities and other factors.</p>
+<p>(I hope to include correlation to other factors like the presence of bus stops and schools near intersections, but I have a little more to do to prepare that data.)</p>
 
 </div>
 </div>
