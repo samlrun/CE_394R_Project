@@ -58,7 +58,7 @@ manner of collision, presence of pedestrians, and other factors were compared to
 crash severity to determine correlation factors.
 
 \begin{equation}
-  r = frac{Nsum{XY}-(sum{X}sum{Y})}{sqrt{ [N sum{x^2}-(sum{x})^2 ][N sum{y^2}-(sum{y})^2 }]}
+  r = frac{Nsum{XY}-(sum{X}sum{Y})}{sqrt{(N sum{x^2}-(sum{x})^2)(N sum{y^2}-(sum{y})^2})}
   (\#eq:pearson)
 \end{equation}
 
