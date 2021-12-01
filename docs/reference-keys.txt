@@ -1,0 +1,10 @@
+intro
+methods
+data
+models
+findings
+additional-analysis
+eq:pearson
+tab:datasummary
+tab:segManner
+tab:intManner

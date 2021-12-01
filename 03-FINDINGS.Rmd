@@ -1,5 +1,54 @@
 # FINDINGS
 
+```{r setup, include = FALSE}
+# load R libraries here; the `include` flag in the chunk options above tells
+# whether to print the results or not. Usually you don't want to print the
+# library statements, or any code on the pdf.
+
+# Main Packages ========
+# I use these in every doc
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(modelsummary)
+library(ggplot2)
+
+options(dplyr.summarise.inform = FALSE)
+
+# Other packages ------
+# These sometimes get used, and sometimes don't.
+library(mlogit)
+
+# Load functions ------
+source("R/functions.R")
+
+# Instructions and options =========
+# prints missing data in tables as blank space
+options(knitr.kable.NA = '') 
+# tells kableExtra to not load latex table packages in the chunk output
+options(kableExtra.latex.load_packages = FALSE) 
+
+# round and format numbers that get printed in the text of the article.
+inline_hook <- function(x) {
+  if (is.numeric(x)) {
+    format(x, digits = 3, big.mark = ",")
+  } else x
+}
+knitr::knit_hooks$set(inline = inline_hook)
+
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE,
+	cache = TRUE
+)
+# options for latex-only output
+if(knitr::is_latex_output()) {
+  knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+} 
+
+```
+
 This section might be called "Results" instead of "Applications," depending
 on what it is that you are working on. But you'll probably say something like 
 "The initial model estimation results are given in Table \@ref(tab:estimation-results)."
@@ -8,6 +57,51 @@ That table is created with the `modelsummary()` package and function.
 With those results presented, you can go into a discussion of what they mean.
 first, discuss the actual results that are shown in the table, and then any 
 interesting or unintuitive observations.
+
+The Pearson correlation factors for severe injury crashes and manner of collision are summarized in Figure \@ref(fig:mannerSeverityCorr).
+
+```{r mannerSeverityCorr, fig.align='center'}
+# Manner of Collision severe crash correlations ######################################
+
+seg <- read_csv("data/CAMS_Crashes_14-21.csv")
+seg <- corrManner(seg,SEG_ID)
+int <- read_csv("data/ISAM_Crashes_14-18.csv")
+int <- corrManner(int,INT_ID)
+
+df <- data.frame(
+  seg["Severities 4-5 (Severe Injury)"],
+  int["Severities 4-5 (Severe Injury)"]) %>%
+  rownames_to_column(var = "manner") %>%
+  rename(
+    Segment = "Severities.4.5..Severe.Injury.",
+    Intersection = "Severities.4.5..Severe.Injury..1") %>%
+  pivot_longer(
+    cols = c('Segment','Intersection'), 
+    names_to = "Type",
+    values_to = "corr",)
+
+ggplot(
+  data=df, 
+  aes(x=manner, y=corr, fill=Type)) +
+  geom_bar(
+    stat="identity",
+    position=position_dodge())+
+  geom_text(
+    aes(label=corr), 
+    vjust=1.6, 
+    color="white", 
+    position = position_dodge(0.9), 
+    size=3.0)+
+  labs(
+    title="Correlation Between Manner of Collision and Severe Injury Crashes", 
+    x="Manner of Collision", 
+    y = "Pearson Correlation Factor")+
+  scale_x_discrete(
+    labels = function(manner) str_wrap(manner, width = 10))+
+  scale_fill_brewer(palette="Paired")+
+  theme_minimal()
+
+```
 
 ## Additional Analysis
 

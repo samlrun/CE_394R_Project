@@ -23,6 +23,9 @@ options(dplyr.summarise.inform = FALSE)
 # These sometimes get used, and sometimes don't.
 library(mlogit)
 
+# Load functions ------
+source("R/functions.R")
+
 # Instructions and options =========
 # prints missing data in tables as blank space
 options(knitr.kable.NA = '') 
@@ -75,86 +78,26 @@ car_mlogit <- Car %>%
 ```
 
 The data was then filtered to compare the crash severities and manners of collision for segments and intersections separately.
-Table \@ref(tab:datasummary) shows the Pearson correlation factors between crash severities and manners of collision for segments. The results are very similar for intersections except the correlation factors are slightly higher in general.
+Table \@ref(tab:segManner) shows the Pearson correlation factors between crash severities and manners of collision for segments. The results are very similar for intersections except the correlation factors are slightly higher in general. Table \@ref(tab:intManner) shows the correlations for intersections.
 
-```{r datasummary}
-# DESCRIPTIVE SUMMARY ######################################
+```{r segManner}
+# Correlation at Segments for Manner of Collision ######################################
 
-  #df <- read_csv("data/CAMS_Crashes_14-21.csv") %>%
-  #  as_tibble() %>%
-  #  select(c(MANNER_COLLISION_ID,CRASH_SEVERITY_ID)) %>%
-  #  filter(MANNER_COLLISION_ID != 97 & MANNER_COLLISION_ID != 99 & MANNER_COLLISION_ID != 89)
-  
-  #datasummary_balance(
-  #  ~MANNER_COLLISION_ID, 
-  #  data = df, 
-  #  dinm = FALSE,
-  #  title = "Descriptive Statistics of Dataset"
-  #)
-  
-  df <- read_csv("data/CAMS_Crashes_14-21.csv") %>%
-  as_tibble() %>%
-  select(c(SEG_ID,MANNER_COLLISION_ID,CRASH_SEVERITY_ID)) %>%
-  filter(MANNER_COLLISION_ID != 97 & MANNER_COLLISION_ID != 99 & MANNER_COLLISION_ID != 89) %>%
-  group_by(SEG_ID) %>%
-  summarize(
-    Angle = sum(MANNER_COLLISION_ID == 1),
-    Front_to_Rear = sum(MANNER_COLLISION_ID == 2),
-    Head_On = sum(MANNER_COLLISION_ID == 3),
-    Sideswipe_Same_Dir = sum(MANNER_COLLISION_ID == 4),
-    Sideswipe_Opp_Dir = sum(MANNER_COLLISION_ID == 5),
-    Parked_Veh = sum(MANNER_COLLISION_ID == 6),
-    Rear_to_Side = sum(MANNER_COLLISION_ID == 7),
-    Rear_to_Rear = sum(MANNER_COLLISION_ID == 8),
-    Single_Veh = sum(MANNER_COLLISION_ID == 96),
-    Sev_1 = sum(CRASH_SEVERITY_ID == 1),
-    Sev_2 = sum(CRASH_SEVERITY_ID == 2),
-    Sev_3 = sum(CRASH_SEVERITY_ID == 3),
-    Sev_4 = sum(CRASH_SEVERITY_ID == 4),
-    Sev_5 = sum(CRASH_SEVERITY_ID == 5)
-  ) %>%
-  select(-SEG_ID)
-
-  colnames(df) <- c(
-    "Angle",
-    "Front to Rear",
-    "Head on",
-    "Sideswipe in the Same Direction",
-    "Sideswipe in the Opposite Direction",
-    "Collision with Parked Vehicle",
-    "Rear to Side",
-    "Rear to Rear",
-    "Single Vehicle Crash",
-    "Severity 1 (Property Damage Only)",
-    "Severity 2 (Possible Injury)",
-    "Severity 3 (Suspected Minor Injury)",
-    "Severity 4 (Suspected Major Injury)",
-    "Severity 5 (Fatal Injury)"
-  )
-
-  # Correlation matrix for data frame
-  cortable <- df %>%
-    cor() %>%
-    round(2)
-  
-  cortable <- cortable[1:9,10:14] %>%
-    as.data.frame()
-  
-  cortable %>%
-    kbl(booktabs = T, caption = "Correlation Matrix", linesep = "\\addlinespace", align = "c") %>%
-    column_spec(1, bold = T, width = "8em") %>%
-    column_spec(2, width = "8em") %>%
-    column_spec(3, width = "8em") %>%
-    column_spec(4, width = "8em") %>%
-    column_spec(5, width = "8em") %>%
-    column_spec(6, width = "8em") %>%
-    kable_styling(
-      latex_options = c("scale_down","striped"),
-      bootstrap_options = "condensed",
-      full_width = F
-      )
+df <- read_csv("data/CAMS_Crashes_14-21.csv")
+df <- corrManner(df,SEG_ID)
+makeCorrTable(df,"Correlation Matrix for Crash Severity and Manner of Collision at Segments")
 
 ```
+
+```{r intManner}
+# Correlation at Segments for Manner of Collision ######################################
+
+df <- read_csv("data/ISAM_Crashes_14-18.csv")
+df <- corrManner(df,INT_ID)
+makeCorrTable(df,"Correlation Matrix for Crash Severity and Manner of Collision at Intersections")
+
+```
+
 
 ## Models
 
