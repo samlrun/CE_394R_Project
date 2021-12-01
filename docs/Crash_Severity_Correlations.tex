@@ -126,34 +126,64 @@ crash severity to determine correlation factors.
 Crash data was retrieved from the Utah Department of Transportation (UDOT). The data was collected through police reports and contains information about crash severity, manner of collision, and other details. In order to perform analysis on the data, four crash files concerning crashes, crash details, location, and vehicles involved had to be combined. Then the the crashes were separated by segments and intersections to allow for consistent analysis.
 
 The data was then filtered to compare the crash severities and manners of collision for segments and intersections separately.
-Table \ref{tab:datasummary} shows the Pearson correlation factors between crash severities and manners of collision for segments. The results are very similar for intersections except the correlation factors are slightly higher in general.
+Table \ref{tab:segManner} shows the Pearson correlation factors between crash severities and manners of collision for segments. The results are very similar for intersections except the correlation factors are slightly higher in general. Table \ref{tab:intManner} shows the correlations for intersections.
 
 \begin{table}
 
-\caption{\label{tab:datasummary}Correlation Matrix}
+\caption{\label{tab:segManner}Correlation Matrix for Crash Severity and Manner of Collision at Segments}
 \centering
 \resizebox{\linewidth}{!}{
-\begin{tabular}[t]{>{\raggedright\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}}
+\begin{tabular}[t]{>{\raggedright\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}}
 \toprule
-  & Severity 1 (Property Damage Only) & Severity 2 (Possible Injury) & Severity 3 (Suspected Minor Injury) & Severity 4 (Suspected Major Injury) & Severity 5 (Fatal Injury)\\
+  & Severity 1 (Property Damage Only) & Severity 2 (Possible Injury) & Severity 3 (Suspected Minor Injury) & Severity 4 (Suspected Major Injury) & Severity 5 (Fatal Injury) & Severities 3-5 (Injury) & Severities 4-5 (Severe Injury)\\
 \midrule
-\cellcolor{gray!6}{\textbf{Angle}} & \cellcolor{gray!6}{0.48} & \cellcolor{gray!6}{0.56} & \cellcolor{gray!6}{0.62} & \cellcolor{gray!6}{0.42} & \cellcolor{gray!6}{0.18}\\
+\cellcolor{gray!6}{\textbf{Angle}} & \cellcolor{gray!6}{0.48} & \cellcolor{gray!6}{0.56} & \cellcolor{gray!6}{0.62} & \cellcolor{gray!6}{0.42} & \cellcolor{gray!6}{0.18} & \cellcolor{gray!6}{0.60} & \cellcolor{gray!6}{0.41}\\
 \addlinespace
-\textbf{Front to Rear} & 0.87 & 0.94 & 0.73 & 0.38 & 0.14\\
+\textbf{Front to Rear} & 0.87 & 0.94 & 0.73 & 0.38 & 0.14 & 0.67 & 0.36\\
 \addlinespace
-\cellcolor{gray!6}{\textbf{Head on}} & \cellcolor{gray!6}{0.45} & \cellcolor{gray!6}{0.50} & \cellcolor{gray!6}{0.55} & \cellcolor{gray!6}{0.39} & \cellcolor{gray!6}{0.30}\\
+\cellcolor{gray!6}{\textbf{Head on}} & \cellcolor{gray!6}{0.45} & \cellcolor{gray!6}{0.50} & \cellcolor{gray!6}{0.55} & \cellcolor{gray!6}{0.39} & \cellcolor{gray!6}{0.30} & \cellcolor{gray!6}{0.55} & \cellcolor{gray!6}{0.41}\\
 \addlinespace
-\textbf{Sideswipe in the Same Direction} & 0.88 & 0.86 & 0.74 & 0.44 & 0.20\\
+\textbf{Sideswipe in the Same Direction} & 0.88 & 0.86 & 0.74 & 0.44 & 0.20 & 0.70 & 0.43\\
 \addlinespace
-\cellcolor{gray!6}{\textbf{Sideswipe in the Opposite Direction}} & \cellcolor{gray!6}{0.34} & \cellcolor{gray!6}{0.35} & \cellcolor{gray!6}{0.46} & \cellcolor{gray!6}{0.39} & \cellcolor{gray!6}{0.29}\\
+\cellcolor{gray!6}{\textbf{Sideswipe in the Opposite Direction}} & \cellcolor{gray!6}{0.34} & \cellcolor{gray!6}{0.35} & \cellcolor{gray!6}{0.46} & \cellcolor{gray!6}{0.39} & \cellcolor{gray!6}{0.29} & \cellcolor{gray!6}{0.48} & \cellcolor{gray!6}{0.41}\\
 \addlinespace
-\textbf{Collision with Parked Vehicle} & 0.38 & 0.36 & 0.42 & 0.30 & 0.22\\
+\textbf{Collision with Parked Vehicle} & 0.38 & 0.36 & 0.42 & 0.30 & 0.22 & 0.42 & 0.32\\
 \addlinespace
-\cellcolor{gray!6}{\textbf{Rear to Side}} & \cellcolor{gray!6}{0.14} & \cellcolor{gray!6}{0.15} & \cellcolor{gray!6}{0.15} & \cellcolor{gray!6}{0.12} & \cellcolor{gray!6}{0.09}\\
+\cellcolor{gray!6}{\textbf{Rear to Side}} & \cellcolor{gray!6}{0.14} & \cellcolor{gray!6}{0.15} & \cellcolor{gray!6}{0.15} & \cellcolor{gray!6}{0.12} & \cellcolor{gray!6}{0.09} & \cellcolor{gray!6}{0.16} & \cellcolor{gray!6}{0.13}\\
 \addlinespace
-\textbf{Rear to Rear} & 0.20 & 0.21 & 0.19 & 0.08 & 0.08\\
+\textbf{Rear to Rear} & 0.20 & 0.21 & 0.19 & 0.08 & 0.08 & 0.18 & 0.09\\
 \addlinespace
-\cellcolor{gray!6}{\textbf{Single Vehicle Crash}} & \cellcolor{gray!6}{0.71} & \cellcolor{gray!6}{0.49} & \cellcolor{gray!6}{0.63} & \cellcolor{gray!6}{0.62} & \cellcolor{gray!6}{0.49}\\
+\cellcolor{gray!6}{\textbf{Single Vehicle Crash}} & \cellcolor{gray!6}{0.71} & \cellcolor{gray!6}{0.49} & \cellcolor{gray!6}{0.63} & \cellcolor{gray!6}{0.62} & \cellcolor{gray!6}{0.49} & \cellcolor{gray!6}{0.68} & \cellcolor{gray!6}{0.67}\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{table}
+
+\caption{\label{tab:intManner}Correlation Matrix for Crash Severity and Manner of Collision at Intersections}
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{>{\raggedright\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}}
+\toprule
+  & Severity 1 (Property Damage Only) & Severity 2 (Possible Injury) & Severity 3 (Suspected Minor Injury) & Severity 4 (Suspected Major Injury) & Severity 5 (Fatal Injury) & Severities 3-5 (Injury) & Severities 4-5 (Severe Injury)\\
+\midrule
+\cellcolor{gray!6}{\textbf{Angle}} & \cellcolor{gray!6}{0.82} & \cellcolor{gray!6}{0.89} & \cellcolor{gray!6}{0.84} & \cellcolor{gray!6}{0.54} & \cellcolor{gray!6}{0.22} & \cellcolor{gray!6}{0.84} & \cellcolor{gray!6}{0.56}\\
+\addlinespace
+\textbf{Front to Rear} & 0.94 & 0.82 & 0.62 & 0.42 & 0.14 & 0.62 & 0.42\\
+\addlinespace
+\cellcolor{gray!6}{\textbf{Head on}} & \cellcolor{gray!6}{0.62} & \cellcolor{gray!6}{0.68} & \cellcolor{gray!6}{0.62} & \cellcolor{gray!6}{0.37} & \cellcolor{gray!6}{0.17} & \cellcolor{gray!6}{0.61} & \cellcolor{gray!6}{0.38}\\
+\addlinespace
+\textbf{Sideswipe in the Same Direction} & 0.84 & 0.68 & 0.49 & 0.32 & 0.12 & 0.49 & 0.33\\
+\addlinespace
+\cellcolor{gray!6}{\textbf{Sideswipe in the Opposite Direction}} & \cellcolor{gray!6}{0.58} & \cellcolor{gray!6}{0.62} & \cellcolor{gray!6}{0.55} & \cellcolor{gray!6}{0.31} & \cellcolor{gray!6}{0.17} & \cellcolor{gray!6}{0.54} & \cellcolor{gray!6}{0.33}\\
+\addlinespace
+\textbf{Collision with Parked Vehicle} & 0.31 & 0.30 & 0.23 & 0.18 & 0.05 & 0.23 & 0.18\\
+\addlinespace
+\cellcolor{gray!6}{\textbf{Rear to Side}} & \cellcolor{gray!6}{0.17} & \cellcolor{gray!6}{0.16} & \cellcolor{gray!6}{0.12} & \cellcolor{gray!6}{0.05} & \cellcolor{gray!6}{0.11} & \cellcolor{gray!6}{0.12} & \cellcolor{gray!6}{0.07}\\
+\addlinespace
+\textbf{Rear to Rear} & 0.14 & 0.11 & 0.07 & 0.04 & 0.05 & 0.07 & 0.05\\
+\addlinespace
+\cellcolor{gray!6}{\textbf{Single Vehicle Crash}} & \cellcolor{gray!6}{0.59} & \cellcolor{gray!6}{0.63} & \cellcolor{gray!6}{0.63} & \cellcolor{gray!6}{0.38} & \cellcolor{gray!6}{0.15} & \cellcolor{gray!6}{0.62} & \cellcolor{gray!6}{0.39}\\
 \bottomrule
 \end{tabular}}
 \end{table}
@@ -168,31 +198,18 @@ The segmentation method used in this model is based on characteristics like AADT
 \hypertarget{findings}{%
 \section{FINDINGS}\label{findings}}
 
-This section might be called ``Results'' instead of ``Applications,'' depending
-on what it is that you are working on. But you'll probably say something like
-``The initial model estimation results are given in Table \ref{tab:estimation-results}.''
-That table is created with the \texttt{modelsummary()} package and function.
+The Pearson correlation factors for severe injury crashes and manner of collision are summarized in Figure \ref{fig:mannerSeverityCorr}. That plot is created with the `ggplot2()' package and function.
 
-With those results presented, you can go into a discussion of what they mean.
-first, discuss the actual results that are shown in the table, and then any
-interesting or unintuitive observations.
+\begin{center}\includegraphics{Crash_Severity_Correlations_files/figure-latex/mannerSeverityCorr-1} \end{center}
+
+Mannners of collision that have a higher correlation factor regarding severe injury crashes are understood to be more severe. First, we notice that single vehicle crashes are much more severe for segments than for intersections. These are a broad category of crashes, so it is difficult to determine the cause of this outright. We also notice that angle crashes tend to be more severe than other crashes, especially at intersections. Furthermore, collisions with parked cars and sideswipes tend to be more severe at segments than intersections while front to rear and head on crashes are similarly severe for both. The only crashes that are very unlikely to be severe are rear to rear and rear to side crashes.
+
+Unfortunately, these manners of collision do not account for factors such as pedestrian involvement, so it is difficult to determine the impact of pedestrians on crash severity from this data alone. That is why it is useful to evaluate the correlation between crash severity and crashes near schools, bus stops, or crashes which involved pedestrians since these will give a better indication to how varying levels of pedestrian involvement affect crash severity.
 
 \hypertarget{additional-analysis}{%
 \subsection{Additional Analysis}\label{additional-analysis}}
 
-Usually, it is good to use your model for something.
-
-\begin{itemize}
-\tightlist
-\item
-  Hypothetical policy analysis
-\item
-  Statistical validation effort
-\item
-  Equity or impact analysis
-\end{itemize}
-
-If the analysis is substantial, it might become its own top-level section.
+This analysis could be used to implement more informed safety measures with crash severity in mind. Knowing which types of crashes are more likely to lead to severe injury will help officials design roadways and inform the public to better avoid these types of collisions. This has applications in automated vehicles as well because engineers can design vehicles to put special emphasis on avoiding the types of crashes that are more likely to lead to severe injury.
 
 \bibliography{book.bib}
 

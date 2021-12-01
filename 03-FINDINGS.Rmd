@@ -1,6 +1,6 @@
 # FINDINGS
 
-```{r setup, include = FALSE}
+```{r setup2, include = FALSE}
 # load R libraries here; the `include` flag in the chunk options above tells
 # whether to print the results or not. Usually you don't want to print the
 # library statements, or any code on the pdf.
@@ -49,16 +49,7 @@ if(knitr::is_latex_output()) {
 
 ```
 
-This section might be called "Results" instead of "Applications," depending
-on what it is that you are working on. But you'll probably say something like 
-"The initial model estimation results are given in Table \@ref(tab:estimation-results)."
-That table is created with the `modelsummary()` package and function.
-
-With those results presented, you can go into a discussion of what they mean.
-first, discuss the actual results that are shown in the table, and then any 
-interesting or unintuitive observations.
-
-The Pearson correlation factors for severe injury crashes and manner of collision are summarized in Figure \@ref(fig:mannerSeverityCorr).
+The Pearson correlation factors for severe injury crashes and manner of collision are summarized in Figure \@ref(fig:mannerSeverityCorr). That plot is created with the 'ggplot2()' package and function.
 
 ```{r mannerSeverityCorr, fig.align='center'}
 # Manner of Collision severe crash correlations ######################################
@@ -103,12 +94,10 @@ ggplot(
 
 ```
 
+Mannners of collision that have a higher correlation factor regarding severe injury crashes are understood to be more severe. First, we notice that single vehicle crashes are much more severe for segments than for intersections. These are a broad category of crashes, so it is difficult to determine the cause of this outright. We also notice that angle crashes tend to be more severe than other crashes, especially at intersections. Furthermore, collisions with parked cars and sideswipes tend to be more severe at segments than intersections while front to rear and head on crashes are similarly severe for both. The only crashes that are very unlikely to be severe are rear to rear and rear to side crashes. 
+
+Unfortunately, these manners of collision do not account for factors such as pedestrian involvement, so it is difficult to determine the impact of pedestrians on crash severity from this data alone. That is why it is useful to evaluate the correlation between crash severity and crashes near schools, bus stops, or crashes which involved pedestrians since these will give a better indication to how varying levels of pedestrian involvement affect crash severity.
+
 ## Additional Analysis
 
-Usually, it is good to use your model for something.
-
-  - Hypothetical policy analysis
-  - Statistical validation effort
-  - Equity or impact analysis
-  
-If the analysis is substantial, it might become its own top-level section.
+This analysis could be used to implement more informed safety measures with crash severity in mind. Knowing  which types of crashes are more likely to lead to severe injury will help officials design roadways and inform the public to better avoid these types of collisions. This has applications in automated vehicles as well because engineers can design vehicles to put special emphasis on avoiding the types of crashes that are more likely to lead to severe injury.
