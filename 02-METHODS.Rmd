@@ -53,20 +53,17 @@ if(knitr::is_latex_output()) {
 
 ```
 
-In order to determine the correlation between crash severity and other factors, 
-the Pearson correlation factors were determined for different factors. The 
+<!-- use other words besides factor. Be very specific about what variables being used. -->
+In order to determine the correlation between crash severity and manner of collision, pedestrian presence, etc...
+the Pearson correlation were determined for different factors. The 
 equation below demonstrates how to calculate the Pearson correlation factor 
 using two potentially correlated variables \@ref(eq:pearson). In this experiment, 
-manner of collision, presence of pedestrians, and other factors were compared to 
-crash severity to determine correlation factors.
+manner of collision, presence of pedestrians, and other factors were compared to crash severity to determine correlation factors.
 
 \begin{equation}
   \rho = \frac{\text{cov}(X,Y)}{\sigma_x \sigma_y}
   (\#eq:pearson)
 \end{equation}
-
-
-## Data
 
 Crash data was retrieved from the Utah Department of Transportation (UDOT). The data was collected through police reports and contains information about crash severity, manner of collision, and other details. In order to perform analysis on the data, four crash files concerning crashes, crash details, location, and vehicles involved had to be combined. Then the the crashes were separated by segments and intersections to allow for consistent analysis. 
 
@@ -78,7 +75,10 @@ car_mlogit <- Car %>%
 ```
 
 The data was then filtered to compare the crash severities and manners of collision for segments and intersections separately.
-Table \@ref(tab:segManner) shows the Pearson correlation factors between crash severities and manners of collision for segments. The results are very similar for intersections except the correlation factors are slightly higher in general. Table \@ref(tab:intManner) shows the correlations for intersections.
+Table \@ref(tab:segManner) shows the Pearson correlation factors between crash severities and manners of collision for segments. 
+
+<!-- not true -->
+<!-- The results are very similar for intersections except the correlation factors are slightly higher in general. Table \@ref(tab:intManner) shows the correlations for intersections. -->
 
 ```{r segManner}
 # Correlation at Segments for Manner of Collision ######################################
@@ -98,9 +98,7 @@ makeCorrTable(df,"Correlation Matrix for Crash Severity and Manner of Collision 
 
 ```
 
-
-## Models
-
+<!-- make it clearer that this paragraph is about both segments and intersections -->
 The segmentation method used in this model is based on characteristics like AADT and length to facilitate homogeneous segments. Intersection related crashes were determined by estimating the location of the stop bar given approach speeds. Considering that the segments and intersection are homogeneous and consistent, it is possible to calculate correlation between crash severities and other factors. 
 
 (I hope to include correlation to other factors like the presence of bus stops and schools near intersections, but I have a little more to do to prepare that data.)
