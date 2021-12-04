@@ -117,6 +117,48 @@ cortable %>%
   )
 
 
+df <- read_csv("data/ISAM_Crashes_14-21_extra.csv")
+
+df <- df %>%
+  as_tibble() %>%
+  select(c(
+    PEDESTRIAN_INVOLVED,
+    BICYCLIST_INVOLVED,
+    MOTORCYCLE_INVOLVED,
+    NUM_SCHOOLS,
+    NUM_UTA,
+    Sev_1_Crashes,
+    Sev_2_Crashes,
+    Sev_3_Crashes,
+    Sev_4_Crashes,
+    Sev_5_Crashes,
+    Severe_Crashes))
+
+colnames(df) <- c(
+  "Pedestrian Involved",
+  "Pedacycle Involved",
+  "Motorcycle Involved",
+  "Schools Within 1000 Feet",
+  "Transit Stops Within 1000 Feet",
+  "Severity 1 (Property Damage Only)",
+  "Severity 2 (Possible Injury)",
+  "Severity 3 (Suspected Minor Injury)",
+  "Severity 4 (Suspected Major Injury)",
+  "Severity 5 (Fatal Injury)",
+  "Severities 3-5 (Injury)"
+)
+
+# Correlation matrix for data frame
+cortable <- df %>%
+  cor(use = "complete.obs") %>%
+  round(2)
+
+cortable <- cortable[1:5,6:11] %>%
+  as.data.frame()
+
+cortable
+
+
 # CLEAN UP #################################################
 
 # Clear data

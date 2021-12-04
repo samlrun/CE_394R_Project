@@ -99,4 +99,47 @@ Mannners of collision that have a higher correlation factor regarding severe inj
 
 Unfortunately, these manners of collision do not account for factors such as pedestrian involvement, so it is difficult to determine the impact of pedestrians on crash severity from this data alone. That is why it is useful to evaluate the correlation between crash severity and crashes near schools, bus stops, or crashes which involved pedestrians since these will give a better indication to how varying levels of pedestrian involvement affect crash severity.
 
+```{r pedSeverityCorr, fig.align='center'}
+# Pedestrian severe crash correlations ######################################
+
+seg <- read_csv("data/CAMS_Crashes_14-21_extra.csv")
+seg <- corrPed(seg,SEG_ID)
+int <- read_csv("data/ISAM_Crashes_14-21_extra.csv")
+int <- corrPed(int,INT_ID)
+
+df <- data.frame(
+  seg["Severities 3-5 (Injury)"],
+  int["Severities 3-5 (Injury)"]) %>%
+  rownames_to_column(var = "ped") %>%
+  rename(
+    Segment = "Severities.3.5..Injury.",
+    Intersection = "Severities.3.5..Injury..1") %>%
+  pivot_longer(
+    cols = c('Segment','Intersection'), 
+    names_to = "Type",
+    values_to = "corr",)
+
+ggplot(
+  data=df, 
+  aes(x=ped, y=corr, fill=Type)) +
+  geom_bar(
+    stat="identity",
+    position=position_dodge())+
+  geom_text(
+    aes(label=corr), 
+    vjust=1.6, 
+    color="white", 
+    position = position_dodge(0.9), 
+    size=3.0)+
+  labs(
+    title="Correlation Between Pedestrian Variables and Injury Crashes", 
+    x="Pedestrian Variables", 
+    y = "Pearson Correlation Factor")+
+  scale_x_discrete(
+    labels = function(manner) str_wrap(manner, width = 10))+
+  scale_fill_brewer(palette="Paired")+
+  theme_minimal()
+
+```
+
 This analysis could be used to implement more informed safety measures with crash severity in mind. Knowing  which types of crashes are more likely to lead to severe injury will help officials design roadways and inform the public to better avoid these types of collisions. This has applications in automated vehicles as well because engineers can design vehicles to put special emphasis on avoiding the types of crashes that are more likely to lead to severe injury.

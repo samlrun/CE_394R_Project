@@ -85,7 +85,7 @@ Table \@ref(tab:segManner) shows the Pearson correlation factors between crash s
 
 df <- read_csv("data/CAMS_Crashes_14-21.csv")
 df <- corrManner(df,SEG_ID)
-makeCorrTable(df,"Correlation Matrix for Crash Severity and Manner of Collision at Segments")
+makeMannerTable(df,"Correlation Matrix for Crash Severity and Manner of Collision at Segments")
 
 ```
 
@@ -94,7 +94,7 @@ makeCorrTable(df,"Correlation Matrix for Crash Severity and Manner of Collision 
 
 df <- read_csv("data/ISAM_Crashes_14-21.csv")
 df <- corrManner(df,INT_ID)
-makeCorrTable(df,"Correlation Matrix for Crash Severity and Manner of Collision at Intersections")
+makeMannerTable(df,"Correlation Matrix for Crash Severity and Manner of Collision at Intersections")
 
 ```
 
@@ -102,3 +102,21 @@ makeCorrTable(df,"Correlation Matrix for Crash Severity and Manner of Collision 
 The segmentation method used in this model is based on characteristics like AADT and length to facilitate homogeneous segments. Intersection related crashes were determined by estimating the location of the stop bar given approach speeds. Considering that the segments and intersection are homogeneous and consistent, it is possible to calculate correlation between crash severities and other factors. 
 
 (I hope to include correlation to other factors like the presence of bus stops and schools near intersections, but I have a little more to do to prepare that data.)
+
+```{r segPed}
+# Correlation at Segments for Manner of Collision ######################################
+
+df <- read_csv("data/CAMS_Crashes_14-21_extra.csv")
+df <- corrPed(df,SEG_ID)
+makePedTable(df,"Correlation Matrix for Crash Severity and Pedestrain Variables at Segments")
+
+```
+
+```{r intPed}
+# Correlation at Segments for Manner of Collision ######################################
+
+df <- read_csv("data/ISAM_Crashes_14-21_extra.csv")
+df <- corrPed(df,INT_ID)
+makePedTable(df,"Correlation Matrix for Crash Severity and Pedestrian Variables at Intersections")
+
+```

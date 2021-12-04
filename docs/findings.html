@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-12-03" />
+<meta name="date" content="2021-12-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -105,15 +105,8 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> QUESTIONS</a></li>
-<li class="chapter" data-level="2" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>2</b> METHODS</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="methods.html"><a href="methods.html#data"><i class="fa fa-check"></i><b>2.1</b> Data</a></li>
-<li class="chapter" data-level="2.2" data-path="methods.html"><a href="methods.html#models"><i class="fa fa-check"></i><b>2.2</b> Models</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="findings.html"><a href="findings.html"><i class="fa fa-check"></i><b>3</b> FINDINGS</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="findings.html"><a href="findings.html#additional-analysis"><i class="fa fa-check"></i><b>3.1</b> Additional Analysis</a></li>
-</ul></li>
+<li class="chapter" data-level="2" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>2</b> METHODS</a></li>
+<li class="chapter" data-level="3" data-path="findings.html"><a href="findings.html"><i class="fa fa-check"></i><b>3</b> FINDINGS</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -139,13 +132,11 @@ div.csl-indent {
 <h1><span class="header-section-number"> 3</span> FINDINGS</h1>
 <p>The Pearson correlation factors for severe injury crashes and manner of collision are summarized in Figure <a href="#fig:mannerSeverityCorr"><strong>??</strong></a>. That plot is created with the ‘ggplot2()’ package and function.</p>
 <p><img src="Crash_Severity_Correlations_files/figure-html/mannerSeverityCorr-1.png" width="672" style="display: block; margin: auto;" /></p>
+<!-- organize so segments and intersections are mentioned independently -->
 <p>Mannners of collision that have a higher correlation factor regarding severe injury crashes are understood to be more severe. First, we notice that single vehicle crashes are much more severe for segments than for intersections. These are a broad category of crashes, so it is difficult to determine the cause of this outright. We also notice that angle crashes tend to be more severe than other crashes, especially at intersections. Furthermore, collisions with parked cars and sideswipes tend to be more severe at segments than intersections while front to rear and head on crashes are similarly severe for both. The only crashes that are very unlikely to be severe are rear to rear and rear to side crashes.</p>
 <p>Unfortunately, these manners of collision do not account for factors such as pedestrian involvement, so it is difficult to determine the impact of pedestrians on crash severity from this data alone. That is why it is useful to evaluate the correlation between crash severity and crashes near schools, bus stops, or crashes which involved pedestrians since these will give a better indication to how varying levels of pedestrian involvement affect crash severity.</p>
-<div id="additional-analysis" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Additional Analysis</h2>
 <p>This analysis could be used to implement more informed safety measures with crash severity in mind. Knowing which types of crashes are more likely to lead to severe injury will help officials design roadways and inform the public to better avoid these types of collisions. This has applications in automated vehicles as well because engineers can design vehicles to put special emphasis on avoiding the types of crashes that are more likely to lead to severe injury.</p>
 
-</div>
 </div>
             </section>
 
