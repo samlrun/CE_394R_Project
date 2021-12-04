@@ -92,7 +92,7 @@ makeCorrTable(df,"Correlation Matrix for Crash Severity and Manner of Collision 
 ```{r intManner}
 # Correlation at Segments for Manner of Collision ######################################
 
-df <- read_csv("data/ISAM_Crashes_14-18.csv")
+df <- read_csv("data/ISAM_Crashes_14-21.csv")
 df <- corrManner(df,INT_ID)
 makeCorrTable(df,"Correlation Matrix for Crash Severity and Manner of Collision at Intersections")
 
