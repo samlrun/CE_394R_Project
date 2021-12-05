@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-12-01" />
+<meta name="date" content="2021-12-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -107,15 +107,8 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> QUESTIONS</a></li>
-<li class="chapter" data-level="2" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>2</b> METHODS</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="methods.html"><a href="methods.html#data"><i class="fa fa-check"></i><b>2.1</b> Data</a></li>
-<li class="chapter" data-level="2.2" data-path="methods.html"><a href="methods.html#models"><i class="fa fa-check"></i><b>2.2</b> Models</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="findings.html"><a href="findings.html"><i class="fa fa-check"></i><b>3</b> FINDINGS</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="findings.html"><a href="findings.html#additional-analysis"><i class="fa fa-check"></i><b>3.1</b> Additional Analysis</a></li>
-</ul></li>
+<li class="chapter" data-level="2" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>2</b> METHODS</a></li>
+<li class="chapter" data-level="3" data-path="findings.html"><a href="findings.html"><i class="fa fa-check"></i><b>3</b> FINDINGS</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -139,21 +132,21 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="methods" class="section level1" number="2">
 <h1><span class="header-section-number"> 2</span> METHODS</h1>
-<p>In order to determine the correlation between crash severity and other factors,
-the Pearson correlation factors were determined for different factors. The
+<!-- use other words besides factor. Be very specific about what variables being used. -->
+<p>In order to determine the correlation between crash severity and manner of collision, pedestrian presence, etc…
+the Pearson correlation were determined for different factors. The
 equation below demonstrates how to calculate the Pearson correlation factor
 using two potentially correlated variables <a href="methods.html#eq:pearson">(2.1)</a>. In this experiment,
-manner of collision, presence of pedestrians, and other factors were compared to
-crash severity to determine correlation factors.</p>
+manner of collision, presence of pedestrians, and other factors were compared to crash severity to determine correlation factors.</p>
 <p><span class="math display" id="eq:pearson">\[\begin{equation}
   \rho = \frac{\text{cov}(X,Y)}{\sigma_x \sigma_y}
   \tag{2.1}
 \end{equation}\]</span></p>
-<div id="data" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Data</h2>
 <p>Crash data was retrieved from the Utah Department of Transportation (UDOT). The data was collected through police reports and contains information about crash severity, manner of collision, and other details. In order to perform analysis on the data, four crash files concerning crashes, crash details, location, and vehicles involved had to be combined. Then the the crashes were separated by segments and intersections to allow for consistent analysis.</p>
 <p>The data was then filtered to compare the crash severities and manners of collision for segments and intersections separately.
-Table <a href="methods.html#tab:segManner">2.1</a> shows the Pearson correlation factors between crash severities and manners of collision for segments. The results are very similar for intersections except the correlation factors are slightly higher in general. Table <a href="methods.html#tab:intManner">2.2</a> shows the correlations for intersections.</p>
+Table <a href="methods.html#tab:segManner">2.1</a> shows the Pearson correlation factors between crash severities and manners of collision for segments.</p>
+<!-- not true -->
+<!-- The results are very similar for intersections except the correlation factors are slightly higher in general. Table \@ref(tab:intManner) shows the correlations for intersections. -->
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:segManner">Table 2.1: </span>Correlation Matrix for Crash Severity and Manner of Collision at Segments
@@ -177,6 +170,12 @@ Severity 4 (Suspected Major Injury)
 <th style="text-align:center;">
 Severity 5 (Fatal Injury)
 </th>
+<th style="text-align:center;">
+Severities 3-5 (Injury)
+</th>
+<th style="text-align:center;">
+Severities 4-5 (Severe Injury)
+</th>
 </tr>
 </thead>
 <tbody>
@@ -199,6 +198,12 @@ Angle
 <td style="text-align:center;width: 8em; ">
 0.18
 </td>
+<td style="text-align:center;width: 8em; ">
+0.60
+</td>
+<td style="text-align:center;width: 8em; ">
+0.41
+</td>
 </tr>
 <tr>
 <td style="text-align:left;width: 8em; font-weight: bold;">
@@ -218,6 +223,12 @@ Front to Rear
 </td>
 <td style="text-align:center;width: 8em; ">
 0.14
+</td>
+<td style="text-align:center;width: 8em; ">
+0.67
+</td>
+<td style="text-align:center;width: 8em; ">
+0.36
 </td>
 </tr>
 <tr>
@@ -239,6 +250,12 @@ Head on
 <td style="text-align:center;width: 8em; ">
 0.30
 </td>
+<td style="text-align:center;width: 8em; ">
+0.55
+</td>
+<td style="text-align:center;width: 8em; ">
+0.41
+</td>
 </tr>
 <tr>
 <td style="text-align:left;width: 8em; font-weight: bold;">
@@ -258,6 +275,12 @@ Sideswipe in the Same Direction
 </td>
 <td style="text-align:center;width: 8em; ">
 0.20
+</td>
+<td style="text-align:center;width: 8em; ">
+0.70
+</td>
+<td style="text-align:center;width: 8em; ">
+0.43
 </td>
 </tr>
 <tr>
@@ -279,6 +302,12 @@ Sideswipe in the Opposite Direction
 <td style="text-align:center;width: 8em; ">
 0.29
 </td>
+<td style="text-align:center;width: 8em; ">
+0.48
+</td>
+<td style="text-align:center;width: 8em; ">
+0.41
+</td>
 </tr>
 <tr>
 <td style="text-align:left;width: 8em; font-weight: bold;">
@@ -298,6 +327,12 @@ Collision with Parked Vehicle
 </td>
 <td style="text-align:center;width: 8em; ">
 0.22
+</td>
+<td style="text-align:center;width: 8em; ">
+0.42
+</td>
+<td style="text-align:center;width: 8em; ">
+0.32
 </td>
 </tr>
 <tr>
@@ -319,6 +354,12 @@ Rear to Side
 <td style="text-align:center;width: 8em; ">
 0.09
 </td>
+<td style="text-align:center;width: 8em; ">
+0.16
+</td>
+<td style="text-align:center;width: 8em; ">
+0.13
+</td>
 </tr>
 <tr>
 <td style="text-align:left;width: 8em; font-weight: bold;">
@@ -339,6 +380,12 @@ Rear to Rear
 <td style="text-align:center;width: 8em; ">
 0.08
 </td>
+<td style="text-align:center;width: 8em; ">
+0.18
+</td>
+<td style="text-align:center;width: 8em; ">
+0.09
+</td>
 </tr>
 <tr>
 <td style="text-align:left;width: 8em; font-weight: bold;">
@@ -358,6 +405,12 @@ Single Vehicle Crash
 </td>
 <td style="text-align:center;width: 8em; ">
 0.49
+</td>
+<td style="text-align:center;width: 8em; ">
+0.68
+</td>
+<td style="text-align:center;width: 8em; ">
+0.67
 </td>
 </tr>
 </tbody>
@@ -385,6 +438,12 @@ Severity 4 (Suspected Major Injury)
 <th style="text-align:center;">
 Severity 5 (Fatal Injury)
 </th>
+<th style="text-align:center;">
+Severities 3-5 (Injury)
+</th>
+<th style="text-align:center;">
+Severities 4-5 (Severe Injury)
+</th>
 </tr>
 </thead>
 <tbody>
@@ -393,19 +452,25 @@ Severity 5 (Fatal Injury)
 Angle
 </td>
 <td style="text-align:center;width: 8em; ">
-0.82
+0.85
 </td>
 <td style="text-align:center;width: 8em; ">
-0.89
+0.90
 </td>
 <td style="text-align:center;width: 8em; ">
-0.84
+0.86
 </td>
 <td style="text-align:center;width: 8em; ">
-0.54
+0.63
 </td>
 <td style="text-align:center;width: 8em; ">
-0.22
+0.26
+</td>
+<td style="text-align:center;width: 8em; ">
+0.87
+</td>
+<td style="text-align:center;width: 8em; ">
+0.64
 </td>
 </tr>
 <tr>
@@ -416,16 +481,22 @@ Front to Rear
 0.94
 </td>
 <td style="text-align:center;width: 8em; ">
-0.82
+0.84
 </td>
 <td style="text-align:center;width: 8em; ">
-0.62
+0.67
 </td>
 <td style="text-align:center;width: 8em; ">
-0.42
+0.51
 </td>
 <td style="text-align:center;width: 8em; ">
-0.14
+0.20
+</td>
+<td style="text-align:center;width: 8em; ">
+0.68
+</td>
+<td style="text-align:center;width: 8em; ">
+0.52
 </td>
 </tr>
 <tr>
@@ -433,19 +504,25 @@ Front to Rear
 Head on
 </td>
 <td style="text-align:center;width: 8em; ">
-0.62
+0.65
 </td>
 <td style="text-align:center;width: 8em; ">
-0.68
+0.71
 </td>
 <td style="text-align:center;width: 8em; ">
-0.62
+0.65
 </td>
 <td style="text-align:center;width: 8em; ">
-0.37
+0.41
 </td>
 <td style="text-align:center;width: 8em; ">
-0.17
+0.20
+</td>
+<td style="text-align:center;width: 8em; ">
+0.64
+</td>
+<td style="text-align:center;width: 8em; ">
+0.43
 </td>
 </tr>
 <tr>
@@ -453,7 +530,140 @@ Head on
 Sideswipe in the Same Direction
 </td>
 <td style="text-align:center;width: 8em; ">
-0.84
+0.83
+</td>
+<td style="text-align:center;width: 8em; ">
+0.70
+</td>
+<td style="text-align:center;width: 8em; ">
+0.52
+</td>
+<td style="text-align:center;width: 8em; ">
+0.40
+</td>
+<td style="text-align:center;width: 8em; ">
+0.22
+</td>
+<td style="text-align:center;width: 8em; ">
+0.53
+</td>
+<td style="text-align:center;width: 8em; ">
+0.42
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Sideswipe in the Opposite Direction
+</td>
+<td style="text-align:center;width: 8em; ">
+0.66
+</td>
+<td style="text-align:center;width: 8em; ">
+0.68
+</td>
+<td style="text-align:center;width: 8em; ">
+0.59
+</td>
+<td style="text-align:center;width: 8em; ">
+0.43
+</td>
+<td style="text-align:center;width: 8em; ">
+0.18
+</td>
+<td style="text-align:center;width: 8em; ">
+0.60
+</td>
+<td style="text-align:center;width: 8em; ">
+0.44
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Collision with Parked Vehicle
+</td>
+<td style="text-align:center;width: 8em; ">
+0.30
+</td>
+<td style="text-align:center;width: 8em; ">
+0.33
+</td>
+<td style="text-align:center;width: 8em; ">
+0.23
+</td>
+<td style="text-align:center;width: 8em; ">
+0.20
+</td>
+<td style="text-align:center;width: 8em; ">
+0.07
+</td>
+<td style="text-align:center;width: 8em; ">
+0.24
+</td>
+<td style="text-align:center;width: 8em; ">
+0.20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Rear to Side
+</td>
+<td style="text-align:center;width: 8em; ">
+0.21
+</td>
+<td style="text-align:center;width: 8em; ">
+0.19
+</td>
+<td style="text-align:center;width: 8em; ">
+0.16
+</td>
+<td style="text-align:center;width: 8em; ">
+0.05
+</td>
+<td style="text-align:center;width: 8em; ">
+0.21
+</td>
+<td style="text-align:center;width: 8em; ">
+0.16
+</td>
+<td style="text-align:center;width: 8em; ">
+0.10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Rear to Rear
+</td>
+<td style="text-align:center;width: 8em; ">
+0.09
+</td>
+<td style="text-align:center;width: 8em; ">
+0.06
+</td>
+<td style="text-align:center;width: 8em; ">
+0.04
+</td>
+<td style="text-align:center;width: 8em; ">
+0.06
+</td>
+<td style="text-align:center;width: 8em; ">
+0.05
+</td>
+<td style="text-align:center;width: 8em; ">
+0.05
+</td>
+<td style="text-align:center;width: 8em; ">
+0.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Single Vehicle Crash
+</td>
+<td style="text-align:center;width: 8em; ">
+0.67
+</td>
+<td style="text-align:center;width: 8em; ">
+0.70
 </td>
 <td style="text-align:center;width: 8em; ">
 0.68
@@ -462,121 +672,501 @@ Sideswipe in the Same Direction
 0.49
 </td>
 <td style="text-align:center;width: 8em; ">
-0.32
+0.23
 </td>
 <td style="text-align:center;width: 8em; ">
-0.12
+0.69
+</td>
+<td style="text-align:center;width: 8em; ">
+0.51
+</td>
+</tr>
+</tbody>
+</table>
+<!-- make it clearer that this paragraph is about both segments and intersections -->
+<p>The segmentation method used in this model is based on characteristics like AADT and length to facilitate homogeneous segments. Intersection related crashes were determined by estimating the location of the stop bar given approach speeds. Considering that the segments and intersection are homogeneous and consistent, it is possible to calculate correlation between crash severities and other factors.</p>
+<p>(I hope to include correlation to other factors like the presence of bus stops and schools near intersections, but I have a little more to do to prepare that data.)</p>
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:segPed">Table 2.3: </span>Correlation Matrix for Crash Severity and Pedestrain Variables at Segments
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Severity 1 (Property Damage Only)
+</th>
+<th style="text-align:center;">
+Severity 2 (Possible Injury)
+</th>
+<th style="text-align:center;">
+Severity 3 (Suspected Minor Injury)
+</th>
+<th style="text-align:center;">
+Severity 4 (Suspected Major Injury)
+</th>
+<th style="text-align:center;">
+Severity 5 (Fatal Injury)
+</th>
+<th style="text-align:center;">
+Severities 3-5 (Injury)
+</th>
+<th style="text-align:center;">
+Severities 4-5 (Severe Injury)
+</th>
+<th style="text-align:center;">
+Total Crashes
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Pedestrian Involved
+</td>
+<td style="text-align:center;width: 8em; ">
+0.33
+</td>
+<td style="text-align:center;width: 8em; ">
+0.40
+</td>
+<td style="text-align:center;width: 8em; ">
+0.47
+</td>
+<td style="text-align:center;width: 8em; ">
+0.32
+</td>
+<td style="text-align:center;">
+0.27
+</td>
+<td style="text-align:center;">
+0.47
+</td>
+<td style="text-align:center;">
+0.35
+</td>
+<td style="text-align:center;">
+0.37
 </td>
 </tr>
 <tr>
 <td style="text-align:left;width: 8em; font-weight: bold;">
-Sideswipe in the Opposite Direction
+Pedacycle Involved
 </td>
 <td style="text-align:center;width: 8em; ">
-0.58
+0.22
 </td>
 <td style="text-align:center;width: 8em; ">
-0.62
+0.29
+</td>
+<td style="text-align:center;width: 8em; ">
+0.35
+</td>
+<td style="text-align:center;width: 8em; ">
+0.21
+</td>
+<td style="text-align:center;">
+0.10
+</td>
+<td style="text-align:center;">
+0.33
+</td>
+<td style="text-align:center;">
+0.21
+</td>
+<td style="text-align:center;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Motorcycle Involved
+</td>
+<td style="text-align:center;width: 8em; ">
+0.44
+</td>
+<td style="text-align:center;width: 8em; ">
+0.43
 </td>
 <td style="text-align:center;width: 8em; ">
 0.55
 </td>
 <td style="text-align:center;width: 8em; ">
+0.49
+</td>
+<td style="text-align:center;">
 0.31
 </td>
-<td style="text-align:center;width: 8em; ">
-0.17
+<td style="text-align:center;">
+0.57
+</td>
+<td style="text-align:center;">
+0.51
+</td>
+<td style="text-align:center;">
+0.46
 </td>
 </tr>
 <tr>
 <td style="text-align:left;width: 8em; font-weight: bold;">
-Collision with Parked Vehicle
+Number of Schools Within 1000 Feet
 </td>
 <td style="text-align:center;width: 8em; ">
-0.31
-</td>
-<td style="text-align:center;width: 8em; ">
-0.30
-</td>
-<td style="text-align:center;width: 8em; ">
-0.23
-</td>
-<td style="text-align:center;width: 8em; ">
-0.18
+0.01
 </td>
 <td style="text-align:center;width: 8em; ">
 0.05
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 8em; font-weight: bold;">
-Rear to Side
-</td>
-<td style="text-align:center;width: 8em; ">
-0.17
-</td>
-<td style="text-align:center;width: 8em; ">
-0.16
-</td>
-<td style="text-align:center;width: 8em; ">
-0.12
-</td>
-<td style="text-align:center;width: 8em; ">
-0.05
-</td>
-<td style="text-align:center;width: 8em; ">
-0.11
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 8em; font-weight: bold;">
-Rear to Rear
-</td>
-<td style="text-align:center;width: 8em; ">
-0.14
-</td>
-<td style="text-align:center;width: 8em; ">
-0.11
-</td>
-<td style="text-align:center;width: 8em; ">
-0.07
 </td>
 <td style="text-align:center;width: 8em; ">
 0.04
 </td>
 <td style="text-align:center;width: 8em; ">
-0.05
+-0.01
+</td>
+<td style="text-align:center;">
+-0.04
+</td>
+<td style="text-align:center;">
+0.02
+</td>
+<td style="text-align:center;">
+-0.02
+</td>
+<td style="text-align:center;">
+0.02
 </td>
 </tr>
 <tr>
 <td style="text-align:left;width: 8em; font-weight: bold;">
-Single Vehicle Crash
+Presence of Schools Within 1000 Feet
+</td>
+<td style="text-align:center;width: 8em; ">
+0.13
+</td>
+<td style="text-align:center;width: 8em; ">
+0.16
+</td>
+<td style="text-align:center;width: 8em; ">
+0.17
+</td>
+<td style="text-align:center;width: 8em; ">
+0.09
+</td>
+<td style="text-align:center;">
+0.01
+</td>
+<td style="text-align:center;">
+0.16
+</td>
+<td style="text-align:center;">
+0.08
+</td>
+<td style="text-align:center;">
+0.14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Number of Transit Stops Within 1000 Feet
+</td>
+<td style="text-align:center;width: 8em; ">
+0.13
+</td>
+<td style="text-align:center;width: 8em; ">
+0.21
+</td>
+<td style="text-align:center;width: 8em; ">
+0.23
+</td>
+<td style="text-align:center;width: 8em; ">
+0.08
+</td>
+<td style="text-align:center;">
+0.00
+</td>
+<td style="text-align:center;">
+0.20
+</td>
+<td style="text-align:center;">
+0.07
+</td>
+<td style="text-align:center;">
+0.16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Presence of Transit Stops Within 1000 Feet
+</td>
+<td style="text-align:center;width: 8em; ">
+0.28
+</td>
+<td style="text-align:center;width: 8em; ">
+0.35
+</td>
+<td style="text-align:center;width: 8em; ">
+0.31
+</td>
+<td style="text-align:center;width: 8em; ">
+0.11
+</td>
+<td style="text-align:center;">
+0.00
+</td>
+<td style="text-align:center;">
+0.27
+</td>
+<td style="text-align:center;">
+0.09
+</td>
+<td style="text-align:center;">
+0.30
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:intPed">Table 2.4: </span>Correlation Matrix for Crash Severity and Pedestrian Variables at Intersections
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Severity 1 (Property Damage Only)
+</th>
+<th style="text-align:center;">
+Severity 2 (Possible Injury)
+</th>
+<th style="text-align:center;">
+Severity 3 (Suspected Minor Injury)
+</th>
+<th style="text-align:center;">
+Severity 4 (Suspected Major Injury)
+</th>
+<th style="text-align:center;">
+Severity 5 (Fatal Injury)
+</th>
+<th style="text-align:center;">
+Severities 3-5 (Injury)
+</th>
+<th style="text-align:center;">
+Severities 4-5 (Severe Injury)
+</th>
+<th style="text-align:center;">
+Total Crashes
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Pedestrian Involved
+</td>
+<td style="text-align:center;width: 8em; ">
+0.49
+</td>
+<td style="text-align:center;width: 8em; ">
+0.56
+</td>
+<td style="text-align:center;width: 8em; ">
+0.55
+</td>
+<td style="text-align:center;width: 8em; ">
+0.41
+</td>
+<td style="text-align:center;">
+0.19
+</td>
+<td style="text-align:center;">
+0.56
+</td>
+<td style="text-align:center;">
+0.42
+</td>
+<td style="text-align:center;">
+0.54
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Pedacycle Involved
+</td>
+<td style="text-align:center;width: 8em; ">
+0.41
+</td>
+<td style="text-align:center;width: 8em; ">
+0.51
+</td>
+<td style="text-align:center;width: 8em; ">
+0.57
+</td>
+<td style="text-align:center;width: 8em; ">
+0.37
+</td>
+<td style="text-align:center;">
+0.12
+</td>
+<td style="text-align:center;">
+0.57
+</td>
+<td style="text-align:center;">
+0.37
+</td>
+<td style="text-align:center;">
+0.47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Motorcycle Involved
+</td>
+<td style="text-align:center;width: 8em; ">
+0.61
+</td>
+<td style="text-align:center;width: 8em; ">
+0.61
 </td>
 <td style="text-align:center;width: 8em; ">
 0.59
 </td>
 <td style="text-align:center;width: 8em; ">
-0.63
+0.47
+</td>
+<td style="text-align:center;">
+0.16
+</td>
+<td style="text-align:center;">
+0.60
+</td>
+<td style="text-align:center;">
+0.47
+</td>
+<td style="text-align:center;">
+0.64
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Number of Schools Within 1000 Feet
 </td>
 <td style="text-align:center;width: 8em; ">
-0.63
+-0.07
 </td>
 <td style="text-align:center;width: 8em; ">
-0.38
+-0.08
+</td>
+<td style="text-align:center;width: 8em; ">
+-0.08
+</td>
+<td style="text-align:center;width: 8em; ">
+-0.02
+</td>
+<td style="text-align:center;">
+-0.05
+</td>
+<td style="text-align:center;">
+-0.08
+</td>
+<td style="text-align:center;">
+-0.03
+</td>
+<td style="text-align:center;">
+-0.08
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Presence of Schools Within 1000 Feet
+</td>
+<td style="text-align:center;width: 8em; ">
+-0.03
+</td>
+<td style="text-align:center;width: 8em; ">
+-0.04
+</td>
+<td style="text-align:center;width: 8em; ">
+-0.05
+</td>
+<td style="text-align:center;width: 8em; ">
+0.02
+</td>
+<td style="text-align:center;">
+-0.03
+</td>
+<td style="text-align:center;">
+-0.04
+</td>
+<td style="text-align:center;">
+0.01
+</td>
+<td style="text-align:center;">
+-0.04
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Number of Transit Stops Within 1000 Feet
 </td>
 <td style="text-align:center;width: 8em; ">
 0.15
 </td>
+<td style="text-align:center;width: 8em; ">
+0.19
+</td>
+<td style="text-align:center;width: 8em; ">
+0.20
+</td>
+<td style="text-align:center;width: 8em; ">
+0.14
+</td>
+<td style="text-align:center;">
+-0.01
+</td>
+<td style="text-align:center;">
+0.19
+</td>
+<td style="text-align:center;">
+0.12
+</td>
+<td style="text-align:center;">
+0.17
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 8em; font-weight: bold;">
+Presence of Transit Stops Within 1000 Feet
+</td>
+<td style="text-align:center;width: 8em; ">
+0.27
+</td>
+<td style="text-align:center;width: 8em; ">
+0.32
+</td>
+<td style="text-align:center;width: 8em; ">
+0.33
+</td>
+<td style="text-align:center;width: 8em; ">
+0.19
+</td>
+<td style="text-align:center;">
+0.07
+</td>
+<td style="text-align:center;">
+0.32
+</td>
+<td style="text-align:center;">
+0.19
+</td>
+<td style="text-align:center;">
+0.30
+</td>
 </tr>
 </tbody>
 </table>
-</div>
-<div id="models" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Models</h2>
-<p>The segmentation method used in this model is based on characteristics like AADT and length to facilitate homogeneous segments. Intersection related crashes were determined by estimating the location of the stop bar given approach speeds. Considering that the segments and intersection are homogeneous and consistent, it is possible to calculate correlation between crash severities and other factors.</p>
-<p>(I hope to include correlation to other factors like the presence of bus stops and schools near intersections, but I have a little more to do to prepare that data.)</p>
 
-</div>
 </div>
             </section>
 

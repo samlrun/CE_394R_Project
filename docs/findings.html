@@ -62,6 +62,8 @@ div.abstract{
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 
@@ -135,6 +137,7 @@ div.csl-indent {
 <!-- organize so segments and intersections are mentioned independently -->
 <p>Mannners of collision that have a higher correlation factor regarding severe injury crashes are understood to be more severe. First, we notice that single vehicle crashes are much more severe for segments than for intersections. These are a broad category of crashes, so it is difficult to determine the cause of this outright. We also notice that angle crashes tend to be more severe than other crashes, especially at intersections. Furthermore, collisions with parked cars and sideswipes tend to be more severe at segments than intersections while front to rear and head on crashes are similarly severe for both. The only crashes that are very unlikely to be severe are rear to rear and rear to side crashes.</p>
 <p>Unfortunately, these manners of collision do not account for factors such as pedestrian involvement, so it is difficult to determine the impact of pedestrians on crash severity from this data alone. That is why it is useful to evaluate the correlation between crash severity and crashes near schools, bus stops, or crashes which involved pedestrians since these will give a better indication to how varying levels of pedestrian involvement affect crash severity.</p>
+<p><img src="Crash_Severity_Correlations_files/figure-html/pedSeverityCorr-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>This analysis could be used to implement more informed safety measures with crash severity in mind. Knowing which types of crashes are more likely to lead to severe injury will help officials design roadways and inform the public to better avoid these types of collisions. This has applications in automated vehicles as well because engineers can design vehicles to put special emphasis on avoiding the types of crashes that are more likely to lead to severe injury.</p>
 
 </div>
@@ -198,6 +201,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
