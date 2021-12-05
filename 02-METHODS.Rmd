@@ -106,8 +106,8 @@ The segmentation method used in this model is based on characteristics like AADT
 ```{r segPed}
 # Correlation at Segments for Manner of Collision ######################################
 
-df <- read_csv("data/CAMS_Crashes_14-21_extra.csv")
-df <- corrPed(df,SEG_ID)
+df <- read_csv("data/CAMS_Crashes_Compiled_14-21_fixed.csv")
+df <- corrPedCAMS(df,SEG_ID)
 makePedTable(df,"Correlation Matrix for Crash Severity and Pedestrain Variables at Segments")
 
 ```

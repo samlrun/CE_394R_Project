@@ -147,6 +147,62 @@ corrPed <- function(df, ID_Name) {
   cortable
 }
 
+# create correlation table for pedestrian factors for CAMS
+corrPedCAMS <- function(df, ID_Name) {
+  
+  ID_Name <- enquo(ID_Name)
+  
+  df <- df %>%
+    as_tibble() %>%
+    group_by(!!ID_Name) %>%
+    summarize(
+      PEDESTRIAN_INVOLVED = sum(as.logical(PEDESTRIAN_INVOLVED)),
+      BICYCLIST_INVOLVED = sum(as.logical(BICYCLIST_INVOLVED)),
+      MOTORCYCLE_INVOLVED = sum(as.logical(MOTORCYCLE_INVOLVED)),
+      NUM_SCHOOLS = mean(NUM_SCHOOLS),
+      SCHOOL_Present = as.logical(max(NUM_SCHOOLS)),
+      NUM_UTA = mean(NUM_UTA),
+      UTA_Present = as.logical(max(NUM_UTA)),
+      Sev_1 = sum(CRASH_SEVERITY_ID == 1),
+      Sev_2 = sum(CRASH_SEVERITY_ID == 2),
+      Sev_3 = sum(CRASH_SEVERITY_ID == 3),
+      Sev_4 = sum(CRASH_SEVERITY_ID == 4),
+      Sev_5 = sum(CRASH_SEVERITY_ID == 5),
+      'Sev_3-5' = sum(CRASH_SEVERITY_ID == 3, CRASH_SEVERITY_ID == 4, CRASH_SEVERITY_ID == 5),
+      'Sev_4-5' = sum(CRASH_SEVERITY_ID == 4, CRASH_SEVERITY_ID == 5),
+      Total = sum(CRASH_SEVERITY_ID == 1, CRASH_SEVERITY_ID == 2, CRASH_SEVERITY_ID == 3, CRASH_SEVERITY_ID == 4, CRASH_SEVERITY_ID == 5)
+    ) %>%
+    select(-!!ID_Name)
+  
+  colnames(df) <- c(
+    "Pedestrian Involved",
+    "Pedacycle Involved",
+    "Motorcycle Involved",
+    "Number of Schools Within 1000 Feet",
+    "Presence of Schools Within 1000 Feet",
+    "Number of Transit Stops Within 1000 Feet",
+    "Presence of Transit Stops Within 1000 Feet",
+    "Severity 1 (Property Damage Only)",
+    "Severity 2 (Possible Injury)",
+    "Severity 3 (Suspected Minor Injury)",
+    "Severity 4 (Suspected Major Injury)",
+    "Severity 5 (Fatal Injury)",
+    "Severities 3-5 (Injury)",
+    "Severities 4-5 (Severe Injury)",
+    "Total Crashes"
+  )
+  
+  # Correlation matrix for data frame
+  cortable <- df %>%
+    cor() %>%
+    round(2)
+  
+  cortable <- cortable[1:7,8:15] %>%
+    as.data.frame()
+  
+  cortable
+}
+
 # Generate Kable table from correlation table for Pedestrian Variables
 makePedTable <- function(cortable, title) {
   cortable %>%

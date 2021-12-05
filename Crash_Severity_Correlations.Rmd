@@ -1,3 +1,48 @@
+---
+title: "Vehicle Crash Severity Correlating Factors"
+author:
+- name: Samuel Runyan
+  email: samyan@byu.edu
+  affiliation: Brigham Young University
+  footnote: 1
+date: "`r Sys.Date()`"
+address:
+- code: Brigham Young University
+  address: Civil and Environmental Engineering Department, 430 Engineering Building,
+    Provo, Utah 84602
+site: bookdown::bookdown_site
+documentclass: article
+journal: Findings
+bibliography: book.bib
+biblio-style: apalike
+link-citations: yes
+abstract: |
+  This is where the abstract should go.
+description: The purpose of this article is to identify the most significant correlating factors to crash severity when performing highway safety analysis.
+layout: 3p, authoryear
+keywords:
+- Highway Safety Analysis
+- Crash Severity
+- Statistical Correlation
+---
+
+# QUESTIONS {#intro}
+
+Placeholder
+
+
+
+<!--chapter:end:index.Rmd-->
+
+
+# METHODS
+
+Placeholder
+
+
+
+<!--chapter:end:02-METHODS.Rmd-->
+
 # FINDINGS
 
 ```{r setup2, include = FALSE}
@@ -143,3 +188,15 @@ ggplot(
 ```
 
 This analysis could be used to implement more informed safety measures with crash severity in mind. Knowing  which types of crashes are more likely to lead to severe injury will help officials design roadways and inform the public to better avoid these types of collisions. This has applications in automated vehicles as well because engineers can design vehicles to put special emphasis on avoiding the types of crashes that are more likely to lead to severe injury.
+
+<!--chapter:end:03-FINDINGS.Rmd-->
+
+`r if (knitr::is_html_output()) '
+# References {-}
+'`
+---
+nocite: '@*'
+---
+
+<!--chapter:end:04-references.Rmd-->
+
