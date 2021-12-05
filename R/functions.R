@@ -98,33 +98,42 @@ corrPed <- function(df, ID_Name) {
   
   df <- df %>%
     as_tibble() %>%
-    select(c(
-      !!ID_Name,
-      PEDESTRIAN_INVOLVED,
-      BICYCLIST_INVOLVED,
-      MOTORCYCLE_INVOLVED,
-      NUM_SCHOOLS,
-      NUM_UTA,
-      Sev_1_Crashes,
-      Sev_2_Crashes,
-      Sev_3_Crashes,
-      Sev_4_Crashes,
-      Sev_5_Crashes,
-      Severe_Crashes)) %>%
+    group_by(!!ID_Name) %>%
+    summarize(
+      PEDESTRIAN_INVOLVED = sum(PEDESTRIAN_INVOLVED),
+      BICYCLIST_INVOLVED = sum(BICYCLIST_INVOLVED),
+      MOTORCYCLE_INVOLVED = sum(MOTORCYCLE_INVOLVED),
+      NUM_SCHOOLS = max(NUM_SCHOOLS),
+      SCHOOL_Present = as.logical(max(NUM_SCHOOLS)),
+      NUM_UTA = max(NUM_UTA),
+      UTA_Present = as.logical(max(NUM_UTA)),
+      Sev_1 = sum(Sev_1_Crashes),
+      Sev_2 = sum(Sev_2_Crashes),
+      Sev_3 = sum(Sev_3_Crashes),
+      Sev_4 = sum(Sev_4_Crashes),
+      Sev_5 = sum(Sev_5_Crashes),
+      'Sev_3-5' = sum(Severe_Crashes),
+      'Sev_4-5' = sum(Sev_4_Crashes, Sev_5_Crashes),
+      Total = sum(Total_Crashes)
+    ) %>%
     select(-!!ID_Name)
   
   colnames(df) <- c(
     "Pedestrian Involved",
     "Pedacycle Involved",
     "Motorcycle Involved",
-    "Schools Within 1000 Feet",
-    "Transit Stops Within 1000 Feet",
+    "Number of Schools Within 1000 Feet",
+    "Presence of Schools Within 1000 Feet",
+    "Number of Transit Stops Within 1000 Feet",
+    "Presence of Transit Stops Within 1000 Feet",
     "Severity 1 (Property Damage Only)",
     "Severity 2 (Possible Injury)",
     "Severity 3 (Suspected Minor Injury)",
     "Severity 4 (Suspected Major Injury)",
     "Severity 5 (Fatal Injury)",
-    "Severities 3-5 (Injury)"
+    "Severities 3-5 (Injury)",
+    "Severities 4-5 (Severe Injury)",
+    "Total Crashes"
   )
   
   # Correlation matrix for data frame
@@ -132,7 +141,7 @@ corrPed <- function(df, ID_Name) {
     cor(use = "complete.obs") %>%
     round(2)
   
-  cortable <- cortable[1:5,6:11] %>%
+  cortable <- cortable[1:7,8:15] %>%
     as.data.frame()
   
   cortable
