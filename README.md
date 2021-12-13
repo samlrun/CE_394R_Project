@@ -7,4 +7,4 @@ The purpose of this article is to answer the question, "What are the significant
 
 This article is constructed with Bookdown.
 
-The dataset files and R scripts used to conduct analysis are not contained in this github repository. These include sensitive crash data provided by UDOT.
+The dataset files and R scripts used to conduct analysis are not contained in this github repository. These include sensitive crash data provided by UDOT. If you are provided the data, you will need to store it in a folder named "data" within the repository for the code to work.
