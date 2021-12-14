@@ -41,6 +41,9 @@ inline_hook <- function(x) {
 knitr::knit_hooks$set(inline = inline_hook)
 
 knitr::opts_chunk$set(
+  #tab.width = 7.5,
+  #tab.asp = 0.8,
+  #out.width = "60%",
 	echo = FALSE,
 	message = FALSE,
 	warning = FALSE,
@@ -53,70 +56,38 @@ if(knitr::is_latex_output()) {
 
 ```
 
-<!-- use other words besides factor. Be very specific about what variables being used. -->
-In order to determine the correlation between crash severity and manner of collision, pedestrian presence, etc...
-the Pearson correlation were determined for different factors. The 
-equation below demonstrates how to calculate the Pearson correlation factor 
-using two potentially correlated variables \@ref(eq:pearson). In this experiment, 
-manner of collision, presence of pedestrians, and other factors were compared to crash severity to determine correlation factors.
+Pearson correlation factors were calculated to determine correlation to crash severity in this study. Equation \@ref(eq:pearson) shows how to calculate Pearson correlation given two potentially correlated variables, X and Y, using covariance. 
 
 \begin{equation}
   \rho = \frac{\text{cov}(X,Y)}{\sigma_x \sigma_y}
   (\#eq:pearson)
 \end{equation}
 
-Crash data was retrieved from the Utah Department of Transportation (UDOT). The data was collected through police reports and contains information about crash severity, manner of collision, and other details. In order to perform analysis on the data, four crash files concerning crashes, crash details, location, and vehicles involved had to be combined. Then the the crashes were separated by segments and intersections to allow for consistent analysis. 
+<!-- make it clearer that this paragraph is about both segments and intersections -->
+<!-- The segmentation method used in this model is based on characteristics like AADT and length to facilitate homogeneous segments. Intersection related crashes were determined by estimating the location of the stop bar given approach speeds. Considering that the segments and intersection are homogeneous and consistent, it is possible to calculate correlation between crash severities and other factors.  -->
 
-```{r load_data}
-data("Car", package = "mlogit")
-car_mlogit <- Car %>%
-  mutate(choice = gsub("choice", "", choice)) %>%
-  dfidx( varying = 5:70, shape = "wide", choice = "choice", sep = "")
-```
+Manner of collision variables and pedestrian related variables were compared to crash severity to determine correlation factors. The pedestrian related variables used here are involvment of pedestrians, pedacycle, or motorcycles in the crash as well as the presence or number of schools or transit stops within 1000 feet of the crash. The resulting correlation factors for manner of collision are shown in Table \@ref(tab:Manner) and the correlation factors for pedestrian variables are shown in Table \@ref(tab:Ped). These correlation factors were evaluated at intersections and roadway segments separately to ensure homogeneity of roadway characteristics at crash locations.
 
-The data was then filtered to compare the crash severities and manners of collision for segments and intersections separately.
-Table \@ref(tab:segManner) shows the Pearson correlation factors between crash severities and manners of collision for segments. 
-
-<!-- not true -->
-<!-- The results are very similar for intersections except the correlation factors are slightly higher in general. Table \@ref(tab:intManner) shows the correlations for intersections. -->
-
-```{r segManner}
-# Correlation at Segments for Manner of Collision ######################################
+```{r Manner}
+# Correlation for Manner of Collision ######################################
 
 df <- read_csv("data/CAMS_Crashes_14-21.csv")
 df <- corrManner(df,SEG_ID)
-makeMannerTable(df,"Correlation Matrix for Crash Severity and Manner of Collision at Segments")
+df2 <- read_csv("data/ISAM_Crashes_14-21.csv")
+df2 <- corrManner(df2,INT_ID)
+makeTable(df, df2, "Correlation Matrix for Crash Severity and Manner of Collision")
 
 ```
 
-```{r intManner}
-# Correlation at Segments for Manner of Collision ######################################
-
-df <- read_csv("data/ISAM_Crashes_14-21.csv")
-df <- corrManner(df,INT_ID)
-makeMannerTable(df,"Correlation Matrix for Crash Severity and Manner of Collision at Intersections")
-
-```
-
-<!-- make it clearer that this paragraph is about both segments and intersections -->
-The segmentation method used in this model is based on characteristics like AADT and length to facilitate homogeneous segments. Intersection related crashes were determined by estimating the location of the stop bar given approach speeds. Considering that the segments and intersection are homogeneous and consistent, it is possible to calculate correlation between crash severities and other factors. 
-
-(I hope to include correlation to other factors like the presence of bus stops and schools near intersections, but I have a little more to do to prepare that data.)
-
-```{r segPed}
-# Correlation at Segments for Manner of Collision ######################################
+```{r Ped}
+# Correlation for Manner of Collision ######################################
 
 df <- read_csv("data/CAMS_Crashes_Compiled_14-21_fixed.csv")
 df <- corrPedCAMS(df,SEG_ID)
-makePedTable(df,"Correlation Matrix for Crash Severity and Pedestrain Variables at Segments")
+df2 <- read_csv("data/ISAM_Crashes_14-21_extra.csv")
+df2 <- corrPed(df2,INT_ID)
+makeTable(df, df2, "Correlation Matrix for Crash Severity and Pedestrain Variables")
 
 ```
 
-```{r intPed}
-# Correlation at Segments for Manner of Collision ######################################
-
-df <- read_csv("data/ISAM_Crashes_14-21_extra.csv")
-df <- corrPed(df,INT_ID)
-makePedTable(df,"Correlation Matrix for Crash Severity and Pedestrian Variables at Intersections")
-
-```
+Crash data for this analysis were retrieved from the Utah Department of Transportation (UDOT) through police reports, and roadway data from the UDOT open data portal were used to identify intersections and segments on state routes. Data about the number of transit stops came from the Utah Transit Authority (UTA) and data about the number of schools came from the Utah Geospatial Resource Center (UGRC). 

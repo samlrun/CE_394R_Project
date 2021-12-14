@@ -1,6 +1,7 @@
 `r if (knitr::is_html_output()) '
 # References {-}
 '`
+Plots in this paper were generated using the ggplot2 library and tables were generated using the kable libraries. Credit is also given to the tidyverse libraries for the statistical analysis and data wrangling done in this paper.
 ---
 nocite: '@*'
 ---

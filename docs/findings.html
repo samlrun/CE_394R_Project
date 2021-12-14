@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-12-04" />
+<meta name="date" content="2021-12-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -62,33 +62,9 @@ div.abstract{
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -103,13 +79,17 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Short Title</a></li>
+<li><a href="./">Crash Severity Correlations</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> QUESTIONS</a></li>
 <li class="chapter" data-level="2" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>2</b> METHODS</a></li>
 <li class="chapter" data-level="3" data-path="findings.html"><a href="findings.html"><i class="fa fa-check"></i><b>3</b> FINDINGS</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="references.html"><a href="references.html#plots-in-this-paper-were-generated-using-the-ggplot2-library-and-tables-were-generated-using-the-kable-libraries.-credit-is-also-given-to-the-tidyverse-libraries-for-the-statistical-analysis-and-data-wrangling-done-in-this-paper."><i class="fa fa-check"></i><b>3.1</b> Plots in this paper were generated using the ggplot2 library and tables were generated using the kable libraries. Credit is also given to the tidyverse libraries for the statistical analysis and data wrangling done in this paper.</a></li>
+<li class="chapter" data-level="3.2" data-path="references.html"><a href="references.html#nocite"><i class="fa fa-check"></i><b>3.2</b> nocite: ‘<span class="citation"></span>’</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -132,12 +112,22 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="findings" class="section level1" number="3">
 <h1><span class="header-section-number"> 3</span> FINDINGS</h1>
-<p>The Pearson correlation factors for severe injury crashes and manner of collision are summarized in Figure <a href="#fig:mannerSeverityCorr"><strong>??</strong></a>. That plot is created with the ‘ggplot2()’ package and function.</p>
-<p><img src="Crash_Severity_Correlations_files/figure-html/mannerSeverityCorr-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>For this study, we are only interested in correlation to total injury-causing crashes because these are generally considered severe, and often are or have the potential to be fatal.</p>
+<p>The correlation between injury crashes and manner of collision are summarized in Figure <a href="findings.html#fig:mannerSeverityCorr">3.1</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:mannerSeverityCorr"></span>
+<img src="Crash_Severity_Correlations_files/figure-html/mannerSeverityCorr-1.png" alt="Correlation Between Manner of Collision and Injury (Severity 3-5) Crashes" width="672" />
+<p class="caption">
+Figure 3.1: Correlation Between Manner of Collision and Injury (Severity 3-5) Crashes
+</p>
+</div>
 <!-- organize so segments and intersections are mentioned independently -->
 <p>Mannners of collision that have a higher correlation factor regarding severe injury crashes are understood to be more severe. First, we notice that single vehicle crashes are much more severe for segments than for intersections. These are a broad category of crashes, so it is difficult to determine the cause of this outright. We also notice that angle crashes tend to be more severe than other crashes, especially at intersections. Furthermore, collisions with parked cars and sideswipes tend to be more severe at segments than intersections while front to rear and head on crashes are similarly severe for both. The only crashes that are very unlikely to be severe are rear to rear and rear to side crashes.</p>
-<p>Unfortunately, these manners of collision do not account for factors such as pedestrian involvement, so it is difficult to determine the impact of pedestrians on crash severity from this data alone. That is why it is useful to evaluate the correlation between crash severity and crashes near schools, bus stops, or crashes which involved pedestrians since these will give a better indication to how varying levels of pedestrian involvement affect crash severity.</p>
-<p><img src="Crash_Severity_Correlations_files/figure-html/pedSeverityCorr-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pedSeverityCorr"></span>
+<img src="Crash_Severity_Correlations_files/figure-html/pedSeverityCorr-1.png" alt="Correlation Between Pedestrian Variables and Injury (Severity 3-5) Crashes" width="672" />
+<p class="caption">
+Figure 3.2: Correlation Between Pedestrian Variables and Injury (Severity 3-5) Crashes
+</p>
+</div>
 <p>This analysis could be used to implement more informed safety measures with crash severity in mind. Knowing which types of crashes are more likely to lead to severe injury will help officials design roadways and inform the public to better avoid these types of collisions. This has applications in automated vehicles as well because engineers can design vehicles to put special emphasis on avoiding the types of crashes that are more likely to lead to severe injury.</p>
 
 </div>
@@ -201,20 +191,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

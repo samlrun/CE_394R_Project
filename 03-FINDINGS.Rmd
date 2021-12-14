@@ -49,9 +49,12 @@ if(knitr::is_latex_output()) {
 
 ```
 
-The Pearson correlation factors for severe injury crashes and manner of collision are summarized in Figure \@ref(fig:mannerSeverityCorr). That plot is created with the 'ggplot2()' package and function.
+For this study, we are mostly interested in correlation to total injury-causing crashes because these are generally considered severe, and often are or have the potential to be fatal.
 
-```{r mannerSeverityCorr, fig.align='center'}
+<!-- organize so segments and intersections are mentioned independently -->
+The correlation between injury crashes and manner of collision are summarized in Figure \@ref(fig:mannerSeverityCorr). We notice that angle crashes tend to be more severe than other crashes, especially at intersections. Interestingly, front to rear crashes are more severe than head on crashes, but this might change if we didn't consider severity 3 crashes since front to rear crashes are incredibly common and often result in minor injury. The only crashes that are very unlikely to be severe are rear to rear and rear to side crashes.
+
+```{r mannerSeverityCorr, fig.align='center', fig.cap="Correlation Between Manner of Collision and Injury (Severity 3-5) Crashes"}
 # Manner of Collision severe crash correlations ######################################
 
 seg <- read_csv("data/CAMS_Crashes_14-21.csv")
@@ -60,12 +63,12 @@ int <- read_csv("data/ISAM_Crashes_14-21.csv")
 int <- corrManner(int,INT_ID)
 
 df <- data.frame(
-  seg["Severities 4-5 (Severe Injury)"],
-  int["Severities 4-5 (Severe Injury)"]) %>%
+  seg["Severity 3-5 (Injury)"],
+  int["Severity 3-5 (Injury)"]) %>%
   rownames_to_column(var = "manner") %>%
   rename(
-    Segment = "Severities.4.5..Severe.Injury.",
-    Intersection = "Severities.4.5..Severe.Injury..1") %>%
+    Segment = "Severity.3.5..Injury.",
+    Intersection = "Severity.3.5..Injury..1") %>%
   pivot_longer(
     cols = c('Segment','Intersection'), 
     names_to = "Type",
@@ -79,12 +82,11 @@ ggplot(
     position=position_dodge())+
   geom_text(
     aes(label=corr), 
-    vjust=1.6, 
-    color="white", 
+    vjust=-0.25, 
+    #color="white", 
     position = position_dodge(0.9), 
-    size=3.0)+
+    size=2.5)+
   labs(
-    title="Correlation Between Manner of Collision and Severe Injury Crashes", 
     x="Manner of Collision", 
     y = "Pearson Correlation Factor")+
   scale_x_discrete(
@@ -94,12 +96,9 @@ ggplot(
 
 ```
 
-<!-- organize so segments and intersections are mentioned independently -->
-Mannners of collision that have a higher correlation factor regarding severe injury crashes are understood to be more severe. First, we notice that single vehicle crashes are much more severe for segments than for intersections. These are a broad category of crashes, so it is difficult to determine the cause of this outright. We also notice that angle crashes tend to be more severe than other crashes, especially at intersections. Furthermore, collisions with parked cars and sideswipes tend to be more severe at segments than intersections while front to rear and head on crashes are similarly severe for both. The only crashes that are very unlikely to be severe are rear to rear and rear to side crashes. 
+The correlation between injury crashes and pedestrian variables are shown in Figure \@ref(fig:pedSeverityCorr).
 
-Unfortunately, these manners of collision do not account for factors such as pedestrian involvement, so it is difficult to determine the impact of pedestrians on crash severity from this data alone. That is why it is useful to evaluate the correlation between crash severity and crashes near schools, bus stops, or crashes which involved pedestrians since these will give a better indication to how varying levels of pedestrian involvement affect crash severity.
-
-```{r pedSeverityCorr, fig.align='center'}
+```{r pedSeverityCorr, fig.align='center', fig.cap="Correlation Between Pedestrian Variables and Injury (Severity 3-5) Crashes"}
 # Pedestrian severe crash correlations ######################################
 
 seg <- read_csv("data/CAMS_Crashes_Compiled_14-21_fixed.csv")
@@ -108,12 +107,12 @@ int <- read_csv("data/ISAM_Crashes_14-21_extra.csv")
 int <- corrPed(int,INT_ID)
 
 df <- data.frame(
-  seg["Severities 3-5 (Injury)"],
-  int["Severities 3-5 (Injury)"]) %>%
+  seg["Severity 3-5 (Injury)"],
+  int["Severity 3-5 (Injury)"]) %>%
   rownames_to_column(var = "ped") %>%
   rename(
-    Segment = "Severities.3.5..Injury.",
-    Intersection = "Severities.3.5..Injury..1") %>%
+    Segment = "Severity.3.5..Injury.",
+    Intersection = "Severity.3.5..Injury..1") %>%
   pivot_longer(
     cols = c('Segment','Intersection'), 
     names_to = "Type",
@@ -127,12 +126,11 @@ ggplot(
     position=position_dodge())+
   geom_text(
     aes(label=corr), 
-    vjust=1.6, 
-    color="white", 
+    vjust=-0.25, 
+    #color="white", 
     position = position_dodge(0.9), 
     size=3.0)+
   labs(
-    title="Correlation Between Pedestrian Variables and Injury Crashes", 
     x="Pedestrian Variables", 
     y = "Pearson Correlation Factor")+
   scale_x_discrete(

@@ -122,64 +122,36 @@ manner of collision, presence of pedestrians, and other factors were compared to
 Crash data was retrieved from the Utah Department of Transportation (UDOT). The data was collected through police reports and contains information about crash severity, manner of collision, and other details. In order to perform analysis on the data, four crash files concerning crashes, crash details, location, and vehicles involved had to be combined. Then the the crashes were separated by segments and intersections to allow for consistent analysis.
 
 The data was then filtered to compare the crash severities and manners of collision for segments and intersections separately.
-Table \ref{tab:segManner} shows the Pearson correlation factors between crash severities and manners of collision for segments.
+Table \ref{tab:Manner} shows the Pearson correlation factors between crash severities and manners of collision.
 
 \begin{table}
 
-\caption{\label{tab:segManner}Correlation Matrix for Crash Severity and Manner of Collision at Segments}
+\caption{\label{tab:Manner}Correlation Matrix for Crash Severity and Manner of Collision}
 \centering
 \resizebox{\linewidth}{!}{
-\begin{tabular}[t]{>{\raggedright\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}}
+\begin{tabular}[t]{>{\raggedright\arraybackslash}p{5em}>{\centering\arraybackslash}p{4em}>{\centering\arraybackslash}p{4em}>{\centering\arraybackslash}p{4em}>{\centering\arraybackslash}p{4em}>{\centering\arraybackslash}p{4em}>{\centering\arraybackslash}p{4em}}
 \toprule
-  & Severity 1 (Property Damage Only) & Severity 2 (Possible Injury) & Severity 3 (Suspected Minor Injury) & Severity 4 (Suspected Major Injury) & Severity 5 (Fatal Injury) & Severities 3-5 (Injury) & Severities 4-5 (Severe Injury)\\
+\multicolumn{1}{c}{ } & \multicolumn{3}{c}{Segments} & \multicolumn{3}{c}{Intersections} \\
+\cmidrule(l{3pt}r{3pt}){2-4} \cmidrule(l{3pt}r{3pt}){5-7}
+  & Severity 5 (Fatal) & Severity 3-5 (Injury) & Total Crashes & Severity 5 (Fatal) & Severity 3-5 (Injury) & Total Crashes\\
 \midrule
-\cellcolor{gray!6}{\textbf{Angle}} & \cellcolor{gray!6}{0.48} & \cellcolor{gray!6}{0.56} & \cellcolor{gray!6}{0.62} & \cellcolor{gray!6}{0.42} & \cellcolor{gray!6}{0.18} & \cellcolor{gray!6}{0.60} & \cellcolor{gray!6}{0.41}\\
+\cellcolor{gray!6}{\textbf{Angle}} & \cellcolor{gray!6}{0.18} & \cellcolor{gray!6}{0.60} & \cellcolor{gray!6}{0.52} & \cellcolor{gray!6}{0.26} & \cellcolor{gray!6}{0.87} & \cellcolor{gray!6}{0.90}\\
 \addlinespace
-\textbf{Front to Rear} & 0.87 & 0.94 & 0.73 & 0.38 & 0.14 & 0.67 & 0.36\\
+\textbf{Front to Rear} & 0.14 & 0.67 & 0.88 & 0.20 & 0.68 & 0.92\\
 \addlinespace
-\cellcolor{gray!6}{\textbf{Head on}} & \cellcolor{gray!6}{0.45} & \cellcolor{gray!6}{0.50} & \cellcolor{gray!6}{0.55} & \cellcolor{gray!6}{0.39} & \cellcolor{gray!6}{0.30} & \cellcolor{gray!6}{0.55} & \cellcolor{gray!6}{0.41}\\
+\cellcolor{gray!6}{\textbf{Head on}} & \cellcolor{gray!6}{0.30} & \cellcolor{gray!6}{0.55} & \cellcolor{gray!6}{0.48} & \cellcolor{gray!6}{0.20} & \cellcolor{gray!6}{0.64} & \cellcolor{gray!6}{0.69}\\
 \addlinespace
-\textbf{Sideswipe in the Same Direction} & 0.88 & 0.86 & 0.74 & 0.44 & 0.20 & 0.70 & 0.43\\
+\textbf{Sideswipe in the Same Direction} & 0.20 & 0.70 & 0.88 & 0.22 & 0.53 & 0.79\\
 \addlinespace
-\cellcolor{gray!6}{\textbf{Sideswipe in the Opposite Direction}} & \cellcolor{gray!6}{0.34} & \cellcolor{gray!6}{0.35} & \cellcolor{gray!6}{0.46} & \cellcolor{gray!6}{0.39} & \cellcolor{gray!6}{0.29} & \cellcolor{gray!6}{0.48} & \cellcolor{gray!6}{0.41}\\
+\cellcolor{gray!6}{\textbf{Sideswipe in the Opposite Direction}} & \cellcolor{gray!6}{0.29} & \cellcolor{gray!6}{0.48} & \cellcolor{gray!6}{0.37} & \cellcolor{gray!6}{0.18} & \cellcolor{gray!6}{0.60} & \cellcolor{gray!6}{0.69}\\
 \addlinespace
-\textbf{Collision with Parked Vehicle} & 0.38 & 0.36 & 0.42 & 0.30 & 0.22 & 0.42 & 0.32\\
+\textbf{Collision with Parked Vehicle} & 0.22 & 0.42 & 0.39 & 0.07 & 0.24 & 0.32\\
 \addlinespace
-\cellcolor{gray!6}{\textbf{Rear to Side}} & \cellcolor{gray!6}{0.14} & \cellcolor{gray!6}{0.15} & \cellcolor{gray!6}{0.15} & \cellcolor{gray!6}{0.12} & \cellcolor{gray!6}{0.09} & \cellcolor{gray!6}{0.16} & \cellcolor{gray!6}{0.13}\\
+\cellcolor{gray!6}{\textbf{Rear to Side}} & \cellcolor{gray!6}{0.09} & \cellcolor{gray!6}{0.16} & \cellcolor{gray!6}{0.15} & \cellcolor{gray!6}{0.21} & \cellcolor{gray!6}{0.16} & \cellcolor{gray!6}{0.20}\\
 \addlinespace
-\textbf{Rear to Rear} & 0.20 & 0.21 & 0.19 & 0.08 & 0.08 & 0.18 & 0.09\\
+\textbf{Rear to Rear} & 0.08 & 0.18 & 0.20 & 0.05 & 0.05 & 0.08\\
 \addlinespace
-\cellcolor{gray!6}{\textbf{Single Vehicle Crash}} & \cellcolor{gray!6}{0.71} & \cellcolor{gray!6}{0.49} & \cellcolor{gray!6}{0.63} & \cellcolor{gray!6}{0.62} & \cellcolor{gray!6}{0.49} & \cellcolor{gray!6}{0.68} & \cellcolor{gray!6}{0.67}\\
-\bottomrule
-\end{tabular}}
-\end{table}
-
-\begin{table}
-
-\caption{\label{tab:intManner}Correlation Matrix for Crash Severity and Manner of Collision at Intersections}
-\centering
-\resizebox{\linewidth}{!}{
-\begin{tabular}[t]{>{\raggedright\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}}
-\toprule
-  & Severity 1 (Property Damage Only) & Severity 2 (Possible Injury) & Severity 3 (Suspected Minor Injury) & Severity 4 (Suspected Major Injury) & Severity 5 (Fatal Injury) & Severities 3-5 (Injury) & Severities 4-5 (Severe Injury)\\
-\midrule
-\cellcolor{gray!6}{\textbf{Angle}} & \cellcolor{gray!6}{0.85} & \cellcolor{gray!6}{0.90} & \cellcolor{gray!6}{0.86} & \cellcolor{gray!6}{0.63} & \cellcolor{gray!6}{0.26} & \cellcolor{gray!6}{0.87} & \cellcolor{gray!6}{0.64}\\
-\addlinespace
-\textbf{Front to Rear} & 0.94 & 0.84 & 0.67 & 0.51 & 0.20 & 0.68 & 0.52\\
-\addlinespace
-\cellcolor{gray!6}{\textbf{Head on}} & \cellcolor{gray!6}{0.65} & \cellcolor{gray!6}{0.71} & \cellcolor{gray!6}{0.65} & \cellcolor{gray!6}{0.41} & \cellcolor{gray!6}{0.20} & \cellcolor{gray!6}{0.64} & \cellcolor{gray!6}{0.43}\\
-\addlinespace
-\textbf{Sideswipe in the Same Direction} & 0.83 & 0.70 & 0.52 & 0.40 & 0.22 & 0.53 & 0.42\\
-\addlinespace
-\cellcolor{gray!6}{\textbf{Sideswipe in the Opposite Direction}} & \cellcolor{gray!6}{0.66} & \cellcolor{gray!6}{0.68} & \cellcolor{gray!6}{0.59} & \cellcolor{gray!6}{0.43} & \cellcolor{gray!6}{0.18} & \cellcolor{gray!6}{0.60} & \cellcolor{gray!6}{0.44}\\
-\addlinespace
-\textbf{Collision with Parked Vehicle} & 0.30 & 0.33 & 0.23 & 0.20 & 0.07 & 0.24 & 0.20\\
-\addlinespace
-\cellcolor{gray!6}{\textbf{Rear to Side}} & \cellcolor{gray!6}{0.21} & \cellcolor{gray!6}{0.19} & \cellcolor{gray!6}{0.16} & \cellcolor{gray!6}{0.05} & \cellcolor{gray!6}{0.21} & \cellcolor{gray!6}{0.16} & \cellcolor{gray!6}{0.10}\\
-\addlinespace
-\textbf{Rear to Rear} & 0.09 & 0.06 & 0.04 & 0.06 & 0.05 & 0.05 & 0.07\\
-\addlinespace
-\cellcolor{gray!6}{\textbf{Single Vehicle Crash}} & \cellcolor{gray!6}{0.67} & \cellcolor{gray!6}{0.70} & \cellcolor{gray!6}{0.68} & \cellcolor{gray!6}{0.49} & \cellcolor{gray!6}{0.23} & \cellcolor{gray!6}{0.69} & \cellcolor{gray!6}{0.51}\\
+\cellcolor{gray!6}{\textbf{Single Vehicle Crash}} & \cellcolor{gray!6}{0.49} & \cellcolor{gray!6}{0.68} & \cellcolor{gray!6}{0.68} & \cellcolor{gray!6}{0.23} & \cellcolor{gray!6}{0.69} & \cellcolor{gray!6}{0.71}\\
 \bottomrule
 \end{tabular}}
 \end{table}
@@ -190,52 +162,28 @@ The segmentation method used in this model is based on characteristics like AADT
 
 \begin{table}
 
-\caption{\label{tab:segPed}Correlation Matrix for Crash Severity and Pedestrain Variables at Segments}
+\caption{\label{tab:Ped}Correlation Matrix for Crash Severity and Pedestrain Variables}
 \centering
 \resizebox{\linewidth}{!}{
-\begin{tabular}[t]{>{\raggedright\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}cccc}
+\begin{tabular}[t]{>{\raggedright\arraybackslash}p{5em}>{\centering\arraybackslash}p{4em}>{\centering\arraybackslash}p{4em}>{\centering\arraybackslash}p{4em}>{\centering\arraybackslash}p{4em}>{\centering\arraybackslash}p{4em}>{\centering\arraybackslash}p{4em}}
 \toprule
-  & Severity 1 (Property Damage Only) & Severity 2 (Possible Injury) & Severity 3 (Suspected Minor Injury) & Severity 4 (Suspected Major Injury) & Severity 5 (Fatal Injury) & Severities 3-5 (Injury) & Severities 4-5 (Severe Injury) & Total Crashes\\
+\multicolumn{1}{c}{ } & \multicolumn{3}{c}{Segments} & \multicolumn{3}{c}{Intersections} \\
+\cmidrule(l{3pt}r{3pt}){2-4} \cmidrule(l{3pt}r{3pt}){5-7}
+  & Severity 5 (Fatal) & Severity 3-5 (Injury) & Total Crashes & Severity 5 (Fatal) & Severity 3-5 (Injury) & Total Crashes\\
 \midrule
-\cellcolor{gray!6}{\textbf{Pedestrian Involved}} & \cellcolor{gray!6}{0.33} & \cellcolor{gray!6}{0.40} & \cellcolor{gray!6}{0.47} & \cellcolor{gray!6}{0.32} & \cellcolor{gray!6}{0.27} & \cellcolor{gray!6}{0.47} & \cellcolor{gray!6}{0.35} & \cellcolor{gray!6}{0.37}\\
+\cellcolor{gray!6}{\textbf{Pedestrian Involved}} & \cellcolor{gray!6}{0.27} & \cellcolor{gray!6}{0.47} & \cellcolor{gray!6}{0.37} & \cellcolor{gray!6}{0.19} & \cellcolor{gray!6}{0.56} & \cellcolor{gray!6}{0.42}\\
 \addlinespace
-\textbf{Pedacycle Involved} & 0.22 & 0.29 & 0.35 & 0.21 & 0.10 & 0.33 & 0.21 & 0.25\\
+\textbf{Pedacycle Involved} & 0.10 & 0.33 & 0.25 & 0.12 & 0.57 & 0.37\\
 \addlinespace
-\cellcolor{gray!6}{\textbf{Motorcycle Involved}} & \cellcolor{gray!6}{0.44} & \cellcolor{gray!6}{0.43} & \cellcolor{gray!6}{0.55} & \cellcolor{gray!6}{0.49} & \cellcolor{gray!6}{0.31} & \cellcolor{gray!6}{0.57} & \cellcolor{gray!6}{0.51} & \cellcolor{gray!6}{0.46}\\
+\cellcolor{gray!6}{\textbf{Motorcycle Involved}} & \cellcolor{gray!6}{0.31} & \cellcolor{gray!6}{0.57} & \cellcolor{gray!6}{0.46} & \cellcolor{gray!6}{0.16} & \cellcolor{gray!6}{0.60} & \cellcolor{gray!6}{0.47}\\
 \addlinespace
-\textbf{Number of Schools Within 1000 Feet} & 0.01 & 0.05 & 0.04 & -0.01 & -0.04 & 0.02 & -0.02 & 0.02\\
+\textbf{Number of Schools Within 1000 Feet} & -0.04 & 0.02 & 0.02 & -0.05 & -0.08 & -0.03\\
 \addlinespace
-\cellcolor{gray!6}{\textbf{Presence of Schools Within 1000 Feet}} & \cellcolor{gray!6}{0.13} & \cellcolor{gray!6}{0.16} & \cellcolor{gray!6}{0.17} & \cellcolor{gray!6}{0.09} & \cellcolor{gray!6}{0.01} & \cellcolor{gray!6}{0.16} & \cellcolor{gray!6}{0.08} & \cellcolor{gray!6}{0.14}\\
+\cellcolor{gray!6}{\textbf{Presence of Schools Within 1000 Feet}} & \cellcolor{gray!6}{0.01} & \cellcolor{gray!6}{0.16} & \cellcolor{gray!6}{0.14} & \cellcolor{gray!6}{-0.03} & \cellcolor{gray!6}{-0.04} & \cellcolor{gray!6}{0.01}\\
 \addlinespace
-\textbf{Number of Transit Stops Within 1000 Feet} & 0.13 & 0.21 & 0.23 & 0.08 & 0.00 & 0.20 & 0.07 & 0.16\\
+\textbf{Number of Transit Stops Within 1000 Feet} & 0.00 & 0.20 & 0.16 & -0.01 & 0.19 & 0.12\\
 \addlinespace
-\cellcolor{gray!6}{\textbf{Presence of Transit Stops Within 1000 Feet}} & \cellcolor{gray!6}{0.28} & \cellcolor{gray!6}{0.35} & \cellcolor{gray!6}{0.31} & \cellcolor{gray!6}{0.11} & \cellcolor{gray!6}{0.00} & \cellcolor{gray!6}{0.27} & \cellcolor{gray!6}{0.09} & \cellcolor{gray!6}{0.30}\\
-\bottomrule
-\end{tabular}}
-\end{table}
-
-\begin{table}
-
-\caption{\label{tab:intPed}Correlation Matrix for Crash Severity and Pedestrian Variables at Intersections}
-\centering
-\resizebox{\linewidth}{!}{
-\begin{tabular}[t]{>{\raggedright\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}>{\centering\arraybackslash}p{8em}cccc}
-\toprule
-  & Severity 1 (Property Damage Only) & Severity 2 (Possible Injury) & Severity 3 (Suspected Minor Injury) & Severity 4 (Suspected Major Injury) & Severity 5 (Fatal Injury) & Severities 3-5 (Injury) & Severities 4-5 (Severe Injury) & Total Crashes\\
-\midrule
-\cellcolor{gray!6}{\textbf{Pedestrian Involved}} & \cellcolor{gray!6}{0.49} & \cellcolor{gray!6}{0.56} & \cellcolor{gray!6}{0.55} & \cellcolor{gray!6}{0.41} & \cellcolor{gray!6}{0.19} & \cellcolor{gray!6}{0.56} & \cellcolor{gray!6}{0.42} & \cellcolor{gray!6}{0.54}\\
-\addlinespace
-\textbf{Pedacycle Involved} & 0.41 & 0.51 & 0.57 & 0.37 & 0.12 & 0.57 & 0.37 & 0.47\\
-\addlinespace
-\cellcolor{gray!6}{\textbf{Motorcycle Involved}} & \cellcolor{gray!6}{0.61} & \cellcolor{gray!6}{0.61} & \cellcolor{gray!6}{0.59} & \cellcolor{gray!6}{0.47} & \cellcolor{gray!6}{0.16} & \cellcolor{gray!6}{0.60} & \cellcolor{gray!6}{0.47} & \cellcolor{gray!6}{0.64}\\
-\addlinespace
-\textbf{Number of Schools Within 1000 Feet} & -0.07 & -0.08 & -0.08 & -0.02 & -0.05 & -0.08 & -0.03 & -0.08\\
-\addlinespace
-\cellcolor{gray!6}{\textbf{Presence of Schools Within 1000 Feet}} & \cellcolor{gray!6}{-0.03} & \cellcolor{gray!6}{-0.04} & \cellcolor{gray!6}{-0.05} & \cellcolor{gray!6}{0.02} & \cellcolor{gray!6}{-0.03} & \cellcolor{gray!6}{-0.04} & \cellcolor{gray!6}{0.01} & \cellcolor{gray!6}{-0.04}\\
-\addlinespace
-\textbf{Number of Transit Stops Within 1000 Feet} & 0.15 & 0.19 & 0.20 & 0.14 & -0.01 & 0.19 & 0.12 & 0.17\\
-\addlinespace
-\cellcolor{gray!6}{\textbf{Presence of Transit Stops Within 1000 Feet}} & \cellcolor{gray!6}{0.27} & \cellcolor{gray!6}{0.32} & \cellcolor{gray!6}{0.33} & \cellcolor{gray!6}{0.19} & \cellcolor{gray!6}{0.07} & \cellcolor{gray!6}{0.32} & \cellcolor{gray!6}{0.19} & \cellcolor{gray!6}{0.30}\\
+\cellcolor{gray!6}{\textbf{Presence of Transit Stops Within 1000 Feet}} & \cellcolor{gray!6}{0.00} & \cellcolor{gray!6}{0.27} & \cellcolor{gray!6}{0.30} & \cellcolor{gray!6}{0.07} & \cellcolor{gray!6}{0.32} & \cellcolor{gray!6}{0.19}\\
 \bottomrule
 \end{tabular}}
 \end{table}
@@ -245,13 +193,27 @@ The segmentation method used in this model is based on characteristics like AADT
 
 The Pearson correlation factors for severe injury crashes and manner of collision are summarized in Figure \ref{fig:mannerSeverityCorr}. That plot is created with the `ggplot2()' package and function.
 
-\begin{center}\includegraphics{Crash_Severity_Correlations_files/figure-latex/mannerSeverityCorr-1} \end{center}
+\begin{figure}
+
+{\centering \includegraphics{Crash_Severity_Correlations_files/figure-latex/mannerSeverityCorr-1} 
+
+}
+
+\caption{Correlation Between Manner of Collision and Injury (Severity 3-5) Crashes}\label{fig:mannerSeverityCorr}
+\end{figure}
 
 Mannners of collision that have a higher correlation factor regarding severe injury crashes are understood to be more severe. First, we notice that single vehicle crashes are much more severe for segments than for intersections. These are a broad category of crashes, so it is difficult to determine the cause of this outright. We also notice that angle crashes tend to be more severe than other crashes, especially at intersections. Furthermore, collisions with parked cars and sideswipes tend to be more severe at segments than intersections while front to rear and head on crashes are similarly severe for both. The only crashes that are very unlikely to be severe are rear to rear and rear to side crashes.
 
 Unfortunately, these manners of collision do not account for factors such as pedestrian involvement, so it is difficult to determine the impact of pedestrians on crash severity from this data alone. That is why it is useful to evaluate the correlation between crash severity and crashes near schools, bus stops, or crashes which involved pedestrians since these will give a better indication to how varying levels of pedestrian involvement affect crash severity.
 
-\begin{center}\includegraphics{Crash_Severity_Correlations_files/figure-latex/pedSeverityCorr-1} \end{center}
+\begin{figure}
+
+{\centering \includegraphics{Crash_Severity_Correlations_files/figure-latex/pedSeverityCorr-1} 
+
+}
+
+\caption{Correlation Between Pedestrian Variables and Injury (Severity 3-5) Crashes}\label{fig:pedSeverityCorr}
+\end{figure}
 
 This analysis could be used to implement more informed safety measures with crash severity in mind. Knowing which types of crashes are more likely to lead to severe injury will help officials design roadways and inform the public to better avoid these types of collisions. This has applications in automated vehicles as well because engineers can design vehicles to put special emphasis on avoiding the types of crashes that are more likely to lead to severe injury.
 

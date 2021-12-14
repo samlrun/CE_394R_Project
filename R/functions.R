@@ -30,14 +30,10 @@ corrManner <- function(df, ID_Name) {
       Parked_Veh = sum(MANNER_COLLISION_ID == 6),
       Rear_to_Side = sum(MANNER_COLLISION_ID == 7),
       Rear_to_Rear = sum(MANNER_COLLISION_ID == 8),
-      Single_Veh = sum(MANNER_COLLISION_ID == 96),
-      Sev_1 = sum(CRASH_SEVERITY_ID == 1),
-      Sev_2 = sum(CRASH_SEVERITY_ID == 2),
-      Sev_3 = sum(CRASH_SEVERITY_ID == 3),
-      Sev_4 = sum(CRASH_SEVERITY_ID == 4),
+      #Single_Veh = sum(MANNER_COLLISION_ID == 96),
       Sev_5 = sum(CRASH_SEVERITY_ID == 5),
       'Sev_3-5' = sum(CRASH_SEVERITY_ID == 3, CRASH_SEVERITY_ID == 4, CRASH_SEVERITY_ID == 5),
-      'Sev_4-5' = sum(CRASH_SEVERITY_ID == 4, CRASH_SEVERITY_ID == 5)
+      Total = sum(CRASH_SEVERITY_ID == 1, CRASH_SEVERITY_ID == 2, CRASH_SEVERITY_ID == 3, CRASH_SEVERITY_ID == 4, CRASH_SEVERITY_ID == 5)
     ) %>%
     select(-!!ID_Name)
   
@@ -50,14 +46,10 @@ corrManner <- function(df, ID_Name) {
     "Collision with Parked Vehicle",
     "Rear to Side",
     "Rear to Rear",
-    "Single Vehicle Crash",
-    "Severity 1 (Property Damage Only)",
-    "Severity 2 (Possible Injury)",
-    "Severity 3 (Suspected Minor Injury)",
-    "Severity 4 (Suspected Major Injury)",
-    "Severity 5 (Fatal Injury)",
-    "Severities 3-5 (Injury)",
-    "Severities 4-5 (Severe Injury)"
+    #"Single Vehicle Crash",
+    "Severity 5 (Fatal)",
+    "Severity 3-5 (Injury)",
+    "Total Crashes"
   )
   
   # Correlation matrix for data frame
@@ -65,31 +57,11 @@ corrManner <- function(df, ID_Name) {
     cor() %>%
     round(2)
   
-  cortable <- cortable[1:9,10:16] %>%
+  cortable <- cortable[1:8,9:11] %>%
     as.data.frame()
   
   cortable
 }
-
-# Generate Kable table from correlation table for Manner of Collision
-makeMannerTable <- function(cortable, title) {
-  cortable %>%
-    kbl(booktabs = T, caption = title, linesep = "\\addlinespace", align = "c") %>%
-    column_spec(1, bold = T, width = "8em") %>%
-    column_spec(2, width = "8em") %>%
-    column_spec(3, width = "8em") %>%
-    column_spec(4, width = "8em") %>%
-    column_spec(5, width = "8em") %>%
-    column_spec(6, width = "8em") %>%
-    column_spec(7, width = "8em") %>%
-    column_spec(8, width = "8em") %>%
-    kable_styling(
-      latex_options = c("scale_down","striped"),
-      bootstrap_options = "condensed",
-      full_width = F
-    )
-}
-
 
 # create correlation table for pedestrian factors
 corrPed <- function(df, ID_Name) {
@@ -107,10 +79,6 @@ corrPed <- function(df, ID_Name) {
       SCHOOL_Present = as.logical(max(NUM_SCHOOLS)),
       NUM_UTA = max(NUM_UTA),
       UTA_Present = as.logical(max(NUM_UTA)),
-      Sev_1 = sum(Sev_1_Crashes),
-      Sev_2 = sum(Sev_2_Crashes),
-      Sev_3 = sum(Sev_3_Crashes),
-      Sev_4 = sum(Sev_4_Crashes),
       Sev_5 = sum(Sev_5_Crashes),
       'Sev_3-5' = sum(Severe_Crashes),
       'Sev_4-5' = sum(Sev_4_Crashes, Sev_5_Crashes),
@@ -126,13 +94,8 @@ corrPed <- function(df, ID_Name) {
     "Presence of Schools Within 1000 Feet",
     "Number of Transit Stops Within 1000 Feet",
     "Presence of Transit Stops Within 1000 Feet",
-    "Severity 1 (Property Damage Only)",
-    "Severity 2 (Possible Injury)",
-    "Severity 3 (Suspected Minor Injury)",
-    "Severity 4 (Suspected Major Injury)",
-    "Severity 5 (Fatal Injury)",
-    "Severities 3-5 (Injury)",
-    "Severities 4-5 (Severe Injury)",
+    "Severity 5 (Fatal)",
+    "Severity 3-5 (Injury)",
     "Total Crashes"
   )
   
@@ -141,7 +104,7 @@ corrPed <- function(df, ID_Name) {
     cor(use = "complete.obs") %>%
     round(2)
   
-  cortable <- cortable[1:7,8:15] %>%
+  cortable <- cortable[1:7,8:10] %>%
     as.data.frame()
   
   cortable
@@ -163,13 +126,8 @@ corrPedCAMS <- function(df, ID_Name) {
       SCHOOL_Present = as.logical(max(NUM_SCHOOLS)),
       NUM_UTA = mean(NUM_UTA),
       UTA_Present = as.logical(max(NUM_UTA)),
-      Sev_1 = sum(CRASH_SEVERITY_ID == 1),
-      Sev_2 = sum(CRASH_SEVERITY_ID == 2),
-      Sev_3 = sum(CRASH_SEVERITY_ID == 3),
-      Sev_4 = sum(CRASH_SEVERITY_ID == 4),
       Sev_5 = sum(CRASH_SEVERITY_ID == 5),
       'Sev_3-5' = sum(CRASH_SEVERITY_ID == 3, CRASH_SEVERITY_ID == 4, CRASH_SEVERITY_ID == 5),
-      'Sev_4-5' = sum(CRASH_SEVERITY_ID == 4, CRASH_SEVERITY_ID == 5),
       Total = sum(CRASH_SEVERITY_ID == 1, CRASH_SEVERITY_ID == 2, CRASH_SEVERITY_ID == 3, CRASH_SEVERITY_ID == 4, CRASH_SEVERITY_ID == 5)
     ) %>%
     select(-!!ID_Name)
@@ -182,13 +140,8 @@ corrPedCAMS <- function(df, ID_Name) {
     "Presence of Schools Within 1000 Feet",
     "Number of Transit Stops Within 1000 Feet",
     "Presence of Transit Stops Within 1000 Feet",
-    "Severity 1 (Property Damage Only)",
-    "Severity 2 (Possible Injury)",
-    "Severity 3 (Suspected Minor Injury)",
-    "Severity 4 (Suspected Major Injury)",
-    "Severity 5 (Fatal Injury)",
-    "Severities 3-5 (Injury)",
-    "Severities 4-5 (Severe Injury)",
+    "Severity 5 (Fatal)",
+    "Severity 3-5 (Injury)",
     "Total Crashes"
   )
   
@@ -197,21 +150,26 @@ corrPedCAMS <- function(df, ID_Name) {
     cor() %>%
     round(2)
   
-  cortable <- cortable[1:7,8:15] %>%
+  cortable <- cortable[1:7,8:10] %>%
     as.data.frame()
   
   cortable
 }
 
-# Generate Kable table from correlation table for Pedestrian Variables
-makePedTable <- function(cortable, title) {
+# Generate Kable table from correlation table
+makeTable <- function(cortable, cortable2, title) {
+  cortable <- cbind(cortable, cortable2)
+  
   cortable %>%
     kbl(booktabs = T, caption = title, linesep = "\\addlinespace", align = "c") %>%
-    column_spec(1, bold = T, width = "8em") %>%
-    column_spec(2, width = "8em") %>%
-    column_spec(3, width = "8em") %>%
-    column_spec(4, width = "8em") %>%
-    column_spec(5, width = "8em") %>%
+    column_spec(1, bold = T, width = "5em") %>%
+    column_spec(2, width = "4em") %>%
+    column_spec(3, width = "4em") %>%
+    column_spec(4, width = "4em") %>%
+    column_spec(5, width = "4em") %>%
+    column_spec(6, width = "4em") %>%
+    column_spec(7, width = "4em") %>%
+    add_header_above(c(" " = 1, "Segments" = 3, "Intersections" = 3)) %>%
     kable_styling(
       latex_options = c("scale_down","striped"),
       bootstrap_options = "condensed",
