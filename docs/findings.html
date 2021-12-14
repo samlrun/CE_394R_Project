@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-12-13" />
+<meta name="date" content="2021-12-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -62,9 +62,33 @@ div.abstract{
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -85,11 +109,7 @@ div.abstract{
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> QUESTIONS</a></li>
 <li class="chapter" data-level="2" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>2</b> METHODS</a></li>
 <li class="chapter" data-level="3" data-path="findings.html"><a href="findings.html"><i class="fa fa-check"></i><b>3</b> FINDINGS</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="references.html"><a href="references.html#plots-in-this-paper-were-generated-using-the-ggplot2-library-and-tables-were-generated-using-the-kable-libraries.-credit-is-also-given-to-the-tidyverse-libraries-for-the-statistical-analysis-and-data-wrangling-done-in-this-paper."><i class="fa fa-check"></i><b>3.1</b> Plots in this paper were generated using the ggplot2 library and tables were generated using the kable libraries. Credit is also given to the tidyverse libraries for the statistical analysis and data wrangling done in this paper.</a></li>
-<li class="chapter" data-level="3.2" data-path="references.html"><a href="references.html#nocite"><i class="fa fa-check"></i><b>3.2</b> nocite: ‘<span class="citation"></span>’</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -112,23 +132,22 @@ div.abstract{
             <section class="normal" id="section-">
 <div id="findings" class="section level1" number="3">
 <h1><span class="header-section-number"> 3</span> FINDINGS</h1>
-<p>For this study, we are only interested in correlation to total injury-causing crashes because these are generally considered severe, and often are or have the potential to be fatal.</p>
-<p>The correlation between injury crashes and manner of collision are summarized in Figure <a href="findings.html#fig:mannerSeverityCorr">3.1</a>.</p>
+<p>For this study, we are mostly interested in correlation to total injury-causing crashes because these are generally considered severe, and often are or have the potential to be fatal.</p>
+<p>The correlation between injury crashes and manner of collision are summarized in Figure <a href="findings.html#fig:mannerSeverityCorr">3.1</a>. From this figure we notice that angle crashes at intersections and same-direction sideswipes at segments tend to be more severe than other crashes. Therefore, preventative measures should be taken to avoid these types of crashes. Front to rear crashes also appear severe on Figure <a href="findings.html#fig:mannerSeverityCorr">3.1</a> but Table <a href="methods.html#tab:Manner">2.1</a> shows that these have a much lower correlation to fatal crashes than total injury crashes, so we can predict that many front to rear crashes lead to less severe injuries and are not necessarily severe. However, front to rear crashes are the most common since they have the strongest correlation to total crashes, so preventing them would significantly reduce total crashes.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:mannerSeverityCorr"></span>
 <img src="Crash_Severity_Correlations_files/figure-html/mannerSeverityCorr-1.png" alt="Correlation Between Manner of Collision and Injury (Severity 3-5) Crashes" width="672" />
 <p class="caption">
 Figure 3.1: Correlation Between Manner of Collision and Injury (Severity 3-5) Crashes
 </p>
 </div>
-<!-- organize so segments and intersections are mentioned independently -->
-<p>Mannners of collision that have a higher correlation factor regarding severe injury crashes are understood to be more severe. First, we notice that single vehicle crashes are much more severe for segments than for intersections. These are a broad category of crashes, so it is difficult to determine the cause of this outright. We also notice that angle crashes tend to be more severe than other crashes, especially at intersections. Furthermore, collisions with parked cars and sideswipes tend to be more severe at segments than intersections while front to rear and head on crashes are similarly severe for both. The only crashes that are very unlikely to be severe are rear to rear and rear to side crashes.</p>
+<p>The correlation between injury crashes and pedestrian variables are shown in Figure <a href="findings.html#fig:pedSeverityCorr">3.2</a>. Surprisingly, there is almost no correlation between the presence of schools and severe crashes, but this may be because all schools are included. The results may change if only large schools or certain types of schools were included. The presence of transit stops also has little correlation to severe crashes and no correlation to fatal crashes, so this does not seem to be a very useful variable. The other three variables validate that there is a correlation between involvement of pedestrians, pedacyclists, and motorcyclists and crash severity, but these variables are incidental and hard to control, so more work needs to be done to determine related variables which lead to these severe pedestrian-related crashes.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:pedSeverityCorr"></span>
 <img src="Crash_Severity_Correlations_files/figure-html/pedSeverityCorr-1.png" alt="Correlation Between Pedestrian Variables and Injury (Severity 3-5) Crashes" width="672" />
 <p class="caption">
 Figure 3.2: Correlation Between Pedestrian Variables and Injury (Severity 3-5) Crashes
 </p>
 </div>
-<p>This analysis could be used to implement more informed safety measures with crash severity in mind. Knowing which types of crashes are more likely to lead to severe injury will help officials design roadways and inform the public to better avoid these types of collisions. This has applications in automated vehicles as well because engineers can design vehicles to put special emphasis on avoiding the types of crashes that are more likely to lead to severe injury.</p>
+<p>This analysis could be used to improve severity-weighted network screening models, and implement more informed safety measures with crash severity in mind. Knowing which types of crashes are more likely to lead to severe injury will help officials design roadways and inform the public to better avoid these types of collisions. This has applications in automated vehicles as well because engineers can design vehicles to put special emphasis on avoiding the types of crashes that are more likely to lead to severe injury.</p>
 
 </div>
             </section>
@@ -191,6 +210,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

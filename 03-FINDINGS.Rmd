@@ -51,8 +51,7 @@ if(knitr::is_latex_output()) {
 
 For this study, we are mostly interested in correlation to total injury-causing crashes because these are generally considered severe, and often are or have the potential to be fatal.
 
-<!-- organize so segments and intersections are mentioned independently -->
-The correlation between injury crashes and manner of collision are summarized in Figure \@ref(fig:mannerSeverityCorr). We notice that angle crashes tend to be more severe than other crashes, especially at intersections. Interestingly, front to rear crashes are more severe than head on crashes, but this might change if we didn't consider severity 3 crashes since front to rear crashes are incredibly common and often result in minor injury. The only crashes that are very unlikely to be severe are rear to rear and rear to side crashes.
+The correlation between injury crashes and manner of collision are summarized in Figure \@ref(fig:mannerSeverityCorr). From this figure we notice that angle crashes at intersections and same-direction sideswipes at segments tend to be more severe than other crashes. Therefore, preventative measures should be taken to avoid these types of crashes. Front to rear crashes also appear severe on Figure \@ref(fig:mannerSeverityCorr) but Table \@ref(tab:Manner) shows that these have a much lower correlation to fatal crashes than total injury crashes, so we can predict that many front to rear crashes lead to less severe injuries and are not necessarily severe. However, front to rear crashes are the most common since they have the strongest correlation to total crashes, so preventing them would significantly reduce total crashes.
 
 ```{r mannerSeverityCorr, fig.align='center', fig.cap="Correlation Between Manner of Collision and Injury (Severity 3-5) Crashes"}
 # Manner of Collision severe crash correlations ######################################
@@ -96,7 +95,7 @@ ggplot(
 
 ```
 
-The correlation between injury crashes and pedestrian variables are shown in Figure \@ref(fig:pedSeverityCorr).
+The correlation between injury crashes and pedestrian variables are shown in Figure \@ref(fig:pedSeverityCorr). Surprisingly, there is almost no correlation between the presence of schools and severe crashes, but this may be because all schools are included. The results may change if only large schools or certain types of schools were included. The presence of transit stops also has little correlation to severe crashes and no correlation to fatal crashes, so this does not seem to be a very useful variable. The other three variables validate that there is a correlation between involvement of pedestrians, pedacyclists, and motorcyclists and crash severity, but these variables are incidental and hard to control, so more work needs to be done to determine related variables which lead to these severe pedestrian-related crashes.
 
 ```{r pedSeverityCorr, fig.align='center', fig.cap="Correlation Between Pedestrian Variables and Injury (Severity 3-5) Crashes"}
 # Pedestrian severe crash correlations ######################################
@@ -140,4 +139,4 @@ ggplot(
 
 ```
 
-This analysis could be used to implement more informed safety measures with crash severity in mind. Knowing  which types of crashes are more likely to lead to severe injury will help officials design roadways and inform the public to better avoid these types of collisions. This has applications in automated vehicles as well because engineers can design vehicles to put special emphasis on avoiding the types of crashes that are more likely to lead to severe injury.
+This analysis could be used to improve severity-weighted network screening models, and implement more informed safety measures with crash severity in mind. Knowing  which types of crashes are more likely to lead to severe injury will help officials design roadways and inform the public to better avoid these types of collisions. This has applications in automated vehicles as well because engineers can design vehicles to put special emphasis on avoiding the types of crashes that are more likely to lead to severe injury.

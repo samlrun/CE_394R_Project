@@ -63,9 +63,6 @@ Pearson correlation factors were calculated to determine correlation to crash se
   (\#eq:pearson)
 \end{equation}
 
-<!-- make it clearer that this paragraph is about both segments and intersections -->
-<!-- The segmentation method used in this model is based on characteristics like AADT and length to facilitate homogeneous segments. Intersection related crashes were determined by estimating the location of the stop bar given approach speeds. Considering that the segments and intersection are homogeneous and consistent, it is possible to calculate correlation between crash severities and other factors.  -->
-
 Manner of collision variables and pedestrian related variables were compared to crash severity to determine correlation factors. The pedestrian related variables used here are involvment of pedestrians, pedacycle, or motorcycles in the crash as well as the presence or number of schools or transit stops within 1000 feet of the crash. The resulting correlation factors for manner of collision are shown in Table \@ref(tab:Manner) and the correlation factors for pedestrian variables are shown in Table \@ref(tab:Ped). These correlation factors were evaluated at intersections and roadway segments separately to ensure homogeneity of roadway characteristics at crash locations.
 
 ```{r Manner}

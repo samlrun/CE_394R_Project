@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-12-13" />
+<meta name="date" content="2021-12-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -67,6 +67,28 @@ div.abstract{
 
 
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -87,11 +109,7 @@ div.abstract{
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> QUESTIONS</a></li>
 <li class="chapter" data-level="2" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>2</b> METHODS</a></li>
 <li class="chapter" data-level="3" data-path="findings.html"><a href="findings.html"><i class="fa fa-check"></i><b>3</b> FINDINGS</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="references.html"><a href="references.html#plots-in-this-paper-were-generated-using-the-ggplot2-library-and-tables-were-generated-using-the-kable-libraries.-credit-is-also-given-to-the-tidyverse-libraries-for-the-statistical-analysis-and-data-wrangling-done-in-this-paper."><i class="fa fa-check"></i><b>3.1</b> Plots in this paper were generated using the ggplot2 library and tables were generated using the kable libraries. Credit is also given to the tidyverse libraries for the statistical analysis and data wrangling done in this paper.</a></li>
-<li class="chapter" data-level="3.2" data-path="references.html"><a href="references.html#nocite"><i class="fa fa-check"></i><b>3.2</b> nocite: ‘<span class="citation"></span>’</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -119,9 +137,7 @@ div.abstract{
   \rho = \frac{\text{cov}(X,Y)}{\sigma_x \sigma_y}
   \tag{2.1}
 \end{equation}\]</span></p>
-<!-- make it clearer that this paragraph is about both segments and intersections -->
-<!-- The segmentation method used in this model is based on characteristics like AADT and length to facilitate homogeneous segments. Intersection related crashes were determined by estimating the location of the stop bar given approach speeds. Considering that the segments and intersection are homogeneous and consistent, it is possible to calculate correlation between crash severities and other factors.  -->
-<p>Manner of collision variables and pedestrian related variables were compared to crash severity to determine correlation factors. The pedestrian related variables used here are involvment of pedestrians, pedacycle, and motorcycle in the crash as well as the presence and number of schools and transit stops within 1000 feet of the crash. The resulting correlation factors for manner of collision are shown in Table <a href="methods.html#tab:Manner">2.1</a> and the correlation factors for pedestrian variables are shown in Table <a href="methods.html#tab:Ped">2.2</a>. These correlation factors were evaluated at intersections and roadway segments separately to ensure homogeneity of roadway characteristics at crash locations.</p>
+<p>Manner of collision variables and pedestrian related variables were compared to crash severity to determine correlation factors. The pedestrian related variables used here are involvment of pedestrians, pedacycle, or motorcycles in the crash as well as the presence or number of schools or transit stops within 1000 feet of the crash. The resulting correlation factors for manner of collision are shown in Table <a href="methods.html#tab:Manner">2.1</a> and the correlation factors for pedestrian variables are shown in Table <a href="methods.html#tab:Ped">2.2</a>. These correlation factors were evaluated at intersections and roadway segments separately to ensure homogeneity of roadway characteristics at crash locations.</p>
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:Manner">Table 2.1: </span>Correlation Matrix for Crash Severity and Manner of Collision
