@@ -162,17 +162,12 @@ makeTable <- function(cortable, cortable2, title) {
   
   cortable %>%
     kbl(booktabs = T, caption = title, linesep = "\\addlinespace", align = "c") %>%
-    column_spec(1, bold = T, width = "5em") %>%
-    column_spec(2, width = "4em") %>%
-    column_spec(3, width = "4em") %>%
-    column_spec(4, width = "4em") %>%
-    column_spec(5, width = "4em") %>%
-    column_spec(6, width = "4em") %>%
-    column_spec(7, width = "4em") %>%
+    column_spec(1, bold = T) %>%
     add_header_above(c(" " = 1, "Segments" = 3, "Intersections" = 3)) %>%
     kable_styling(
       latex_options = c("scale_down","striped"),
       bootstrap_options = "condensed",
-      full_width = F
+      full_width = FALSE,
+      font_size = 10
     )
 }
